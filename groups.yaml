@@ -2,3 +2,4 @@ Office:
   name: Office
   entities:
     - light.office
+    - device_tracker.victor
