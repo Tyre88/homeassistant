@@ -1,0 +1,173 @@
+- action:
+  - data:
+      entity_id: light.family_room
+    service: light.turn_on
+  - data:
+      group_name: Family room
+      scene_name: Chill red
+    service: hue.hue_activate_scene
+  alias: Movie time
+  condition:
+  - after: '19:00:00'
+    condition: time
+  id: '1518001485817'
+  trigger:
+  - entity_id: media_player.family_room_tv
+    platform: state
+    to: playing
+- action:
+  - delay: 00:03:00
+  - alias: ''
+    data:
+      entity_id: light.family_room
+    service: light.turn_off
+  alias: Movie time off
+  condition:
+  - after: '19:00:00'
+    condition: time
+  id: '1518013135874'
+  trigger:
+  - entity_id: media_player.family_room_tv
+    platform: state
+    to: 'off'
+- action:
+  - data:
+      entity_id: light.family_room
+    service: light.turn_on
+  - data:
+      group_name: Family room
+      scene_name: Normal
+    service: hue.hue_activate_scene
+  alias: Movie pause
+  condition:
+  - after: '19:00:00'
+    condition: time
+  id: '1518015690894'
+  trigger:
+  - entity_id: media_player.family_room_tv
+    platform: state
+    to: paused
+- action:
+  - data:
+      group_name: Liam
+      scene_name: Nightlight
+    service: hue.hue_activate_scene
+  alias: Liam sov lampa
+  condition: []
+  id: '1518016595553'
+  trigger:
+  - at: '19:30:00'
+    platform: time
+- action:
+  - data:
+      entity_id: light.liam
+    service: light.turn_off
+  alias: Liam sov lampa (av)
+  condition: []
+  id: '1518016636265'
+  trigger:
+  - at: 06:30:00
+    platform: time
+- action:
+  - data:
+      group_name: Family room
+      scene_name: Morning
+    service: hue.hue_activate_scene
+  alias: Morning
+  condition: []
+  id: '1518035192497'
+  trigger:
+  - at: 06:00:00
+    platform: time
+- action:
+  - data:
+      entity_id: light.family_room
+    service: light.turn_off
+  alias: Morning off
+  condition: []
+  id: '1518035235136'
+  trigger:
+  - at: 06:45:00
+    platform: time
+- action:
+  - delay: 00:02:00
+  - data:
+      entity_id: light.bedroom
+    service: light.turn_off
+  - data:
+      entity_id: light.family_room
+    service: light.turn_off
+  - data:
+      entity_id: light.liam
+    service: light.turn_off
+  - data:
+      entity_id: light.office
+    service: light.turn_off
+  - data:
+      entity_id: media_player.family_room_tv
+    service: media_player.turn_off
+  alias: Larm på
+  condition: []
+  id: '1518162445883'
+  trigger:
+  - entity_id: alarm_control_panel.tallgatan_alarm
+    from: disarmed
+    platform: state
+    to: armed_away
+- action:
+  - alias: ''
+    data:
+      entity_id: automation.liam_sov_lampa
+    service: automation.trigger
+  - data:
+      brightness_pct: '10'
+      entity_id: light.bedroom
+    service: light.turn_on
+  alias: Larm av (Kväll)
+  condition:
+  - after: '19:00:00'
+    before: 05:00:00
+    condition: time
+  id: '1518162651684'
+  trigger:
+  - entity_id: alarm_control_panel.tallgatan_alarm
+    platform: state
+    to: disarmed
+- action:
+  - data:
+      code: '5381'
+      entity_id: alarm_control_panel.tallgatan_alarm
+    service: alarm_control_panel.alarm_arm_home
+  alias: Alarm home night
+  condition: []
+  id: '1518189920099'
+  trigger:
+  - at: '23:00:00'
+    platform: time
+- action:
+  - data:
+      code: '5381'
+      entity_id: alarm_control_panel.tallgatan_alarm
+    service: alarm_control_panel.alarm_disarm
+  alias: Alarm off morning
+  condition: []
+  id: '1518189941152'
+  trigger:
+  - at: 05:00:00
+    platform: time
+- action:
+  - data:
+      message: Nu börjar det bli varmt / kallt!
+    service: notify.pushetta
+  alias: Temperature notification
+  condition: []
+  id: '1518505263748'
+  trigger:
+  - above: '23'
+    below: '16'
+    entity_id: sensor.koket_temperature
+    platform: numeric_state
+  - above: '23'
+    below: '16'
+    entity_id: sensor.plan_2_temperature
+    platform: numeric_state

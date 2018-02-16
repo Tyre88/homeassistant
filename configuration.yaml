@@ -1,0 +1,109 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Tallgatan9
+  # Location required to calculate the time the sun rises and sets
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 32
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Stockholm
+  # Customization file
+  customize: !include customize.yaml
+  # WHITELIST
+  whitelist_external_dirs: /tmp/
+
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret api_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  base_url: disgaea.duckdns.org:8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+
+# Text to speech
+tts:
+  - platform: google
+
+# HUE
+hue:
+  bridges:
+    - host: 192.168.1.100
+
+# Verisure
+verisure:
+  username: !secret verisure_username
+  password: !secret verisure_password
+
+# Pushetta
+notify:
+  - name: Pushetta
+    platform: pushetta
+    api_key: !secret push_key
+    channel_name: !secret push_channel
+
+# Device tracker
+device_tracker:
+  - platform: gpslogger
+    password: !secret api_password
+
+# ZONES
+# !include zones.yaml
+zone:
+  - name: Work
+    latitude: !secret work_lat
+    longitude: !secret work_long
+    radius: 250
+    icon: mdi:work
+
+  - name: Home
+    latitude: !secret home_lat
+    longitude: !secret home_long
+    radius: 100
+    icon: mdi:account-multiple
+
+
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml

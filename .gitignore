@@ -1,0 +1,13 @@
+secrets.yaml
+zones.yaml
+entity_registry.yaml
+known_devices.yaml
+tts/
+deps/
+www/
+.cloud/production_auth.json
+*.conf
+*.log
+*.db
+.HA_VERSION
+.uuid
