@@ -14,7 +14,7 @@ homeassistant:
   whitelist_external_dirs: /tmp/
 
 # Show links to resources in log and frontend
-introduction:
+# introduction:
 
 # Enables the frontend
 frontend:
