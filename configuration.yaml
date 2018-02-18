@@ -112,6 +112,14 @@ google_assistant:
     - light
 
 
+mqtt:
+  broker: 192.168.1.110
+  port: 1883
+  client_id: home-assistant-1
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+
 
 group: !include groups.yaml
 automation: !include automations.yaml
