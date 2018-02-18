@@ -25,3 +25,7 @@ Bedrooms:
   entities:
     - light.liam
     - light.bedroom
+
+HaMonitor:
+  name: "HA monitor"
+  entities:

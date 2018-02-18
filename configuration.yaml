@@ -120,6 +120,22 @@ mqtt:
   password: !secret mqtt_password
 
 
+#HA MONITOR
+sensor: 
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /
+      - type: memory_free
+      - type: processor_use
+      - type: ipv4_address
+        arg: eth0
+      - type: network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0
+
+
 
 group: !include groups.yaml
 automation: !include automations.yaml
