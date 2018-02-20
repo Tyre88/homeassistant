@@ -24,7 +24,8 @@ Bedrooms:
   name: Bedrooms
   entities:
     - light.liam
-    - light.bedroom
+    - light.yeelight_rgb_7811dca82827
+    #- light.bedroom
 
 HaMonitor:
   name: "HA monitor"
