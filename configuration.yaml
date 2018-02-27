@@ -57,7 +57,14 @@ map:
 # Track the sun
 sun:
 
-
+light:
+  - platform: yeelight
+    devices:
+      192.168.1.104:
+        name: Victor sleep lamp
+        transition: 1000
+        use_music_mode: True #(defaults to False)
+        save_on_change: False #(defaults to True)
 
 # Weather prediction
 sensor:
