@@ -3,6 +3,7 @@ Office:
   entities:
     - light.office
     - device_tracker.victor
+    - sensor.temperature_office
 
 Alarm:
   name: Alarm
