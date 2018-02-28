@@ -85,7 +85,7 @@ sensor:
   #MQTT
   - platform: mqtt
     state_topic: "home/office"
-    name: 'Temperature'
+    name: 'Temperature office'
     unit_of_measurement: '°C'
     value_template: '{{ value_json.temperature }}'
 
