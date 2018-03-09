@@ -92,6 +92,15 @@ sensor:
     state_topic: "home/office"
     name: 'Humidity office'
     value_template: '{{ value_json.humidity }}'
+  - platform: mqtt
+    state_topic: "home/familyroom"
+    name: 'Temperature Family room'
+    unit_of_measurement: '°C'
+    value_template: '{{ value_json.temperature }}'
+  - platform: mqtt
+    state_topic: "home/familyroom"
+    name: 'Humidity Family room'
+    value_template: '{{ value_json.humidity }}'
 
 # Text to speech
 tts:
