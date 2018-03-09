@@ -88,6 +88,10 @@ sensor:
     name: 'Temperature office'
     unit_of_measurement: '°C'
     value_template: '{{ value_json.temperature }}'
+  - platform: mqtt
+    state_topic: "home/office"
+    name: 'Humidity office'
+    value_template: '{{ value_json.humidity }}'
 
 # Text to speech
 tts:

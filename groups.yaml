@@ -4,6 +4,7 @@ Office:
     - light.office
     - device_tracker.victor
     - sensor.temperature_office
+    - sensor.humidity_office
 
 Alarm:
   name: Alarm
