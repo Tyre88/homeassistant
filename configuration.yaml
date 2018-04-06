@@ -103,6 +103,15 @@ sensor:
     name: 'Humidity Family room'
     unit_of_measurement: '%'
     value_template: '{{ value_json.humidity }}'
+  #TRAFIKVERKET
+  - platform: trafikverket_weatherstation
+    name: Trafikverket Road WeatherStation Dörröd
+    api_key: 4b8c74ed7c5b481682421e8fc99dc154
+    station: Dörröd
+    type: air
+    scan_interval: 600
+
+
 
 # Text to speech
 tts:
