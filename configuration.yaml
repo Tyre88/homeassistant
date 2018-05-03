@@ -138,7 +138,7 @@ notify:
 device_tracker:
   platform: google_maps
   username: victorhassio@gmail.com
-  password: !secret api_password
+  password: !secret password_small
   #- platform: gpslogger
   #  password: !secret api_password
 
