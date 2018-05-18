@@ -14,7 +14,7 @@ homeassistant:
   whitelist_external_dirs: /tmp/
 
 # Show links to resources in log and frontend
-# introduction:
+#introduction:
 
 # Enables the frontend
 frontend:
@@ -68,7 +68,6 @@ light:
 
 # Weather prediction
 sensor:
-  - platform: yr
   #HA monitor
   - platform: systemmonitor
     resources:
@@ -103,6 +102,13 @@ sensor:
     name: 'Humidity Family room'
     unit_of_measurement: '%'
     value_template: '{{ value_json.humidity }}'
+  #TRAFIKVERKET
+  - platform: trafikverket_weatherstation
+    name: Trafikverket Road WeatherStation Dörröd
+    api_key: !secret trafik_api_key
+    station: Dörröd
+    type: air
+    scan_interval: 600
 
 # Text to speech
 tts:
@@ -118,17 +124,20 @@ verisure:
   username: !secret verisure_username
   password: !secret verisure_password
 
-# Pushetta
+# HTML5 push
 notify:
-  - name: Pushetta
-    platform: pushetta
-    api_key: !secret push_key
-    channel_name: !secret push_channel
+  - name: HTML5_push
+    platform: html5
+    gcm_api_key: !secret gcm_api_key
+    gcm_sender_id: !secret gcm_sender_id
 
 # Device tracker
 device_tracker:
   - platform: gpslogger
     password: !secret api_password
+#  - platform: google_maps
+#    username: victorhassio@gmail.com
+#    password: iamhere4ever
 
 # ZONES
 # !include zones.yaml
@@ -136,13 +145,13 @@ zone:
   - name: Work
     latitude: !secret work_lat
     longitude: !secret work_long
-    radius: 250
+    radius: 150
     icon: mdi:work
 
   - name: Home
     latitude: !secret home_lat
     longitude: !secret home_long
-    radius: 100
+    radius: 50
     icon: mdi:account-multiple
 
 
