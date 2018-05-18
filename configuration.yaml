@@ -135,9 +135,9 @@ notify:
 device_tracker:
   - platform: gpslogger
     password: !secret api_password
-#  - platform: google_maps
-#    username: victorhassio@gmail.com
-#    password: iamhere4ever
+  - platform: google_maps
+    username: victorhassio@gmail.com
+    password: !secret password_small
 
 # ZONES
 # !include zones.yaml
