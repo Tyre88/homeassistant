@@ -2,7 +2,7 @@ Office:
   name: Office
   entities:
     - light.office
-    - device_tracker.victor
+    - device_tracker.google_maps_116101876784266767195
     - sensor.temperature_office
     - sensor.humidity_office
 

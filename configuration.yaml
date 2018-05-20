@@ -117,7 +117,7 @@ tts:
 # HUE
 hue:
   bridges:
-    - host: 192.168.1.100
+    - host: 192.168.1.112
 
 # Verisure
 verisure:
@@ -133,8 +133,6 @@ notify:
 
 # Device tracker
 device_tracker:
-  - platform: gpslogger
-    password: !secret api_password
   - platform: google_maps
     username: victorhassio@gmail.com
     password: !secret password_small
