@@ -1,11 +1,8 @@
 - action:
   - data:
       entity_id: light.family_room
-    service: light.turn_on
-  - data:
-      group_name: Family room
-      scene_name: Chill red
-    service: hue.hue_activate_scene
+      transition: 5
+    service: light.turn_off
   alias: Movie time
   condition:
   - after: '19:00:00'
@@ -16,9 +13,13 @@
     platform: state
     to: playing
 - action:
-  - delay: 00:03:00
   - alias: ''
     data:
+      group_name: Family room
+      scene_name: Normal
+    service: hue.hue_activate_scene
+  - delay: 00:03:00
+  - data:
       entity_id: light.family_room
     service: light.turn_off
   alias: Movie time off
@@ -47,27 +48,27 @@
   - entity_id: media_player.family_room_tv
     platform: state
     to: paused
-- action:
-  - data:
-      group_name: Liam
-      scene_name: Nightlight
-    service: hue.hue_activate_scene
-  alias: Liam sov lampa
-  condition: []
-  id: '1518016595553'
+- id: '1518016595553'
+  alias: Victor vakna!
   trigger:
-  - at: '19:30:00'
-    platform: time
-- action:
+  - platform: mqtt
+    topic: android/wakie
+  condition: []
+  action:
   - data:
-      entity_id: light.liam
+      brightness_pct: 15
+      entity_id: light.liam_lamp
+      transition: 60
+    service: light.turn_on
+  - delay: '600'
+  - data:
+      entity_id: light.liam_lamp
     service: light.turn_off
-  alias: Liam sov lampa (av)
+- id: '1518016636265'
+  alias: ''
+  trigger: []
   condition: []
-  id: '1518016636265'
-  trigger:
-  - at: 06:30:00
-    platform: time
+  action: []
 - action:
   - data:
       group_name: Family room
@@ -133,17 +134,23 @@
   - entity_id: alarm_control_panel.tallgatan_alarm
     platform: state
     to: disarmed
-- action:
+- id: '1518189920099'
+  alias: Alarm home night
+  trigger:
+  - at: '23:00:00'
+    platform: time
+  - at: '23:59:00'
+    platform: time
+  - at: 01:00:00
+    platform: time
+  - at: 02:00:00
+    platform: time
+  condition: []
+  action:
   - data:
       code: '5381'
       entity_id: alarm_control_panel.tallgatan_alarm
     service: alarm_control_panel.alarm_arm_home
-  alias: Alarm home night
-  condition: []
-  id: '1518189920099'
-  trigger:
-  - at: '23:00:00'
-    platform: time
 - action:
   - data:
       code: '5381'
@@ -155,13 +162,8 @@
   trigger:
   - at: 05:00:00
     platform: time
-- action:
-  - data:
-      message: Nu börjar det bli varmt / kallt!
-    service: notify.pushetta
+- id: '1518505263748'
   alias: Temperature notification
-  condition: []
-  id: '1518505263748'
   trigger:
   - above: '23'
     below: '16'
@@ -171,3 +173,91 @@
     below: '16'
     entity_id: sensor.plan_2_temperature
     platform: numeric_state
+  condition: []
+  action:
+  - data:
+      data:
+        tag: temperature_notification
+      message: Nu börjar det bli varmt och är över 23 grader i köket!
+      title: Varmt
+    service: notify.pushetta
+- id: '1518799510967'
+  alias: Welcome home
+  trigger:
+  - entity_id: device_tracker.google_maps_116101876784266767195
+    event: enter
+    platform: zone
+    zone: zone.home
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.tallgatan_alarm
+    state: armed_away
+  action:
+  - data:
+      data:
+        actions:
+        - action: alarm_off
+          icon: /static/icons/favicon-192x192.png
+          title: Larma av
+        tag: arrive_home_notification
+      message: Välkommen hem, larma av?
+      title: Larma av?
+    service: notify.html5_push
+- id: '1519128635267'
+  alias: Master bedroom prepare evening
+  trigger:
+  - at: '21:30:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      brightness_pct: 25
+      entity_id: light.bedroom
+    service: light.turn_on
+- id: '1526624082837'
+  alias: Leave home (alarm on ask)
+  trigger:
+  - entity_id: device_tracker.google_maps_116101876784266767195
+    event: leave
+    platform: zone
+    zone: zone.home
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.tallgatan_alarm
+    state: disarmed
+  action:
+  - data:
+      data:
+        actions:
+        - action: alarm_on
+          icon: /static/icons/favicon-192x192.png
+          title: Larma på
+      message: Du lämnar hemmet och har glömt att larma, vill du larma på?
+      title: Larma på?
+    service: notify.html5_push
+- id: '1526626906212'
+  alias: Alarm away
+  trigger:
+  - event_data:
+      action: alarm_on
+    event_type: html5_notification.clicked
+    platform: event
+  condition: []
+  action:
+  - data:
+      code: '5381'
+      entity_id: alarm_control_panel.tallgatan_alarm
+    service: alarm_control_panel.alarm_arm_away
+- id: '1526629850759'
+  alias: Alarm off
+  trigger:
+  - event_data:
+      action: alarm_off
+    event_type: html5_notification.clicked
+    platform: event
+  condition: []
+  action:
+  - data:
+      code: '5381'
+      entity_id: alarm_control_panel.tallgatan_alarm
+    service: alarm_control_panel.alarm_disarm

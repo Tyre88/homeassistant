@@ -14,7 +14,7 @@ homeassistant:
   whitelist_external_dirs: /tmp/
 
 # Show links to resources in log and frontend
-# introduction:
+#introduction:
 
 # Enables the frontend
 frontend:
@@ -68,7 +68,6 @@ light:
 
 # Weather prediction
 sensor:
-  - platform: yr
   #HA monitor
   - platform: systemmonitor
     resources:
@@ -106,12 +105,10 @@ sensor:
   #TRAFIKVERKET
   - platform: trafikverket_weatherstation
     name: Trafikverket Road WeatherStation Dörröd
-    api_key: 4b8c74ed7c5b481682421e8fc99dc154
+    api_key: !secret trafik_api_key
     station: Dörröd
     type: air
     scan_interval: 600
-
-
 
 # Text to speech
 tts:
@@ -120,27 +117,25 @@ tts:
 # HUE
 hue:
   bridges:
-    - host: 192.168.1.100
+    - host: 192.168.1.112
 
 # Verisure
 verisure:
   username: !secret verisure_username
   password: !secret verisure_password
 
-# Pushetta
+# HTML5 push
 notify:
-  - name: Pushetta
-    platform: pushetta
-    api_key: !secret push_key
-    channel_name: !secret push_channel
+  - name: HTML5_push
+    platform: html5
+    gcm_api_key: !secret gcm_api_key
+    gcm_sender_id: !secret gcm_sender_id
 
 # Device tracker
 device_tracker:
-  platform: google_maps
-  username: victorhassio@gmail.com
-  password: !secret password_small
-  #- platform: gpslogger
-  #  password: !secret api_password
+  - platform: google_maps
+    username: victorhassio@gmail.com
+    password: !secret password_small
 
 # ZONES
 # !include zones.yaml
@@ -148,13 +143,13 @@ zone:
   - name: Work
     latitude: !secret work_lat
     longitude: !secret work_long
-    radius: 250
+    radius: 150
     icon: mdi:work
 
   - name: Home
     latitude: !secret home_lat
     longitude: !secret home_long
-    radius: 100
+    radius: 50
     icon: mdi:account-multiple
 
 
