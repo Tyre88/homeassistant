@@ -203,6 +203,7 @@
       message: Välkommen hem, larma av?
       title: Larma av?
     service: notify.html5_push
+<<<<<<< HEAD
 - id: '1519128635267'
   alias: Master bedroom prepare evening
   trigger:
@@ -214,6 +215,21 @@
       brightness_pct: 25
       entity_id: light.bedroom
     service: light.turn_on
+=======
+- action:
+  - data:
+      brightness_pct: '10'
+      color_name: blue
+      entity_id: light.yeelight_rgb_7811dca82827
+      transition: 2
+    service: light.turn_on
+  alias: Master bedroom prepare evening
+  condition: []
+  id: '1519128635267'
+  trigger:
+  - at: '21:00:00'
+    platform: time
+>>>>>>> e8c97ede896bd9feb2c66db3e6f2972f9aedca05
 - id: '1526624082837'
   alias: Leave home (alarm on ask)
   trigger:

@@ -1,0 +1,41 @@
+Office:
+  name: Office
+  entities:
+    - light.office
+    - device_tracker.google_maps_116101876784266767195
+    - sensor.temperature_office
+    - sensor.humidity_office
+
+Alarm:
+  name: Alarm
+  entities:
+    - alarm_control_panel.tallgatan_alarm
+    - sensor.koket_temperature
+    - sensor.plan_2_temperature
+    - binary_sensor.huvudingang
+    - binary_sensor.altandorr
+    - binary_sensor.kallare
+
+FamilyRoom:
+  name: "Family room"
+  entities:
+    - sensor.temperature_family_room
+    - sensor.humidity_family_room
+    - light.family_room
+    - media_player.family_room_tv
+
+#Bedrooms:
+#  name: Bedrooms
+#  entities:
+#    - light.liam
+#    - light.yeelight_rgb_7811dca82827
+
+HaMonitor:
+  name: "HA monitor"
+  entities:
+    - sensor.processor_use
+    - sensor.memory_free
+    - sensor.disk_use_percent_
+    - sensor.ipv4_address_eth0
+    - sensor.network_in_eth0
+    - sensor.network_out_eth0
