@@ -53,13 +53,13 @@ views:
           - type: state-badge
             entity: binary_sensor.altandorr
             style:
-              top: 80%
+              top: 85%
               left: 40%
           - type: state-badge
             entity: binary_sensor.huvudingang
             style:
-              top: 5%
-              left: 43%
+              top: 8%
+              left: 45%
       - type: picture-elements
         image: /local/floor2-sm.jpg
         elements:
