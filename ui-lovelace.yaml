@@ -39,3 +39,12 @@ views:
             style:
               top: 20%
               left: 30%
+      - type: picture-elements
+        image: /local/floor2-sm.jpg
+        elements:
+          - type: state-icon
+            tap_action: toggle
+            entity: light.office
+            style:
+              top: 20%
+              left: 20%
