@@ -32,8 +32,8 @@ views:
             tap_action: toggle
             entity: light.family_room
             style:
-              top: 20%
-              left: 15%
+              top: 25%
+              left: 20%
           - type: state-label
             entity: sensor.koket_temperature
             style:
@@ -52,4 +52,4 @@ views:
             entity: sensor.temperature_office
             style:
               top: 70%
-              left: 40%
+              left: 30%
