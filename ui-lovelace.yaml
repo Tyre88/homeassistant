@@ -18,6 +18,13 @@ views:
           - sensor.temperature_family_room
           - sensor.humidity_family_room
           - media_player.family_room_tv
+      - type: entities
+        title: Bedroom
+        entities:
+          - light.liam_lamp
+          - light.sovrum_victor
+          - light.bedroom
+          - media_player.vardagsrummet
       - type: picture-elements
         image: /local/floor1-sm.jpg
         elements:
@@ -27,3 +34,8 @@ views:
             style:
               top: 10%
               left: 5%
+          - type: state-label
+            entity: sensor.koket_temperature
+            style:
+              top: 20%
+              left: 30%
