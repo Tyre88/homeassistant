@@ -148,12 +148,12 @@
   condition: []
   action:
   - data:
-      code: '5381'
+      code: !secret code
       entity_id: alarm_control_panel.tallgatan_alarm
     service: alarm_control_panel.alarm_arm_home
 - action:
   - data:
-      code: '5381'
+      code: !secret code
       entity_id: alarm_control_panel.tallgatan_alarm
     service: alarm_control_panel.alarm_disarm
   alias: Alarm off morning
@@ -245,7 +245,7 @@
   condition: []
   action:
   - data:
-      code: '5381'
+      code: !secret code
       entity_id: alarm_control_panel.tallgatan_alarm
     service: alarm_control_panel.alarm_arm_away
 - id: '1526629850759'
@@ -258,6 +258,6 @@
   condition: []
   action:
   - data:
-      code: '5381'
+      code: !secret code
       entity_id: alarm_control_panel.tallgatan_alarm
     service: alarm_control_panel.alarm_disarm

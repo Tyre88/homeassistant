@@ -60,6 +60,15 @@ views:
             style:
               top: 12%
               left: 46%
+          - type: service-button
+            service: alarm_control_panel.alarm_arm_away
+            service_data:
+              entity_id: alarm_control_panel.tallgatan_alarm
+              code: !secret code
+            style:
+              top: 90%
+              left: 80%
+            title: Larma på
       - type: picture-elements
         image: /local/floor2-sm.jpg
         elements:
