@@ -83,3 +83,11 @@ views:
             style:
               top: 70%
               left: 30%
+      - type: picture-elements
+        image: /local/floor0-sm.jpg
+        elements:
+          - type: state-badge
+            entity: binary_sensor.kallare
+            style:
+              top: 85%
+              left: 55%
