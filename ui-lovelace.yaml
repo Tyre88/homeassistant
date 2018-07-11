@@ -32,13 +32,13 @@ views:
             tap_action: toggle
             entity: light.family_room
             style:
-              top: 10%
-              left: 5%
+              top: 20%
+              left: 15%
           - type: state-label
             entity: sensor.koket_temperature
             style:
               top: 50%
-              left: 50%
+              left: 40%
       - type: picture-elements
         image: /local/floor2-sm.jpg
         elements:
@@ -46,10 +46,10 @@ views:
             tap_action: toggle
             entity: light.office
             style:
-              top: 50%
-              left: 20%
+              top: 55%
+              left: 30%
           - type: state-label
             entity: sensor.temperature_office
             style:
-              top: 50%
-              left: 50%
+              top: 70%
+              left: 40%
