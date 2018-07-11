@@ -50,3 +50,5 @@ views:
           - entity_id: light*
         card_config:
           title: Lights
+      - type: picture-elements
+        image: /local/floor1.jpg
