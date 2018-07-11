@@ -87,8 +87,8 @@ views:
             tap_action: toggle
             entity: light.sovrum_victor
             style:
-              top: 15%
-              left: 85%
+              top: 20%
+              left: 75%
       - type: picture-elements
         image: /local/floor0-sm.jpg
         elements:
