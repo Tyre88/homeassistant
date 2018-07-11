@@ -85,10 +85,16 @@ views:
               left: 30%
           - type: state-icon
             tap_action: toggle
-            entity: light.sovrum_victor
+            entity: light.liam_lamp
             style:
               top: 23%
               left: 75%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.sovrum_victor
+            style:
+              top: 23%
+              left: 55%
       - type: picture-elements
         image: /local/floor0-sm.jpg
         elements:
