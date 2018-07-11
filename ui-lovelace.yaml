@@ -5,19 +5,19 @@ views:
     theme: dark-mode
     cards:
       - type: entities
-        title: Office
-        entities:
-          - light.office
-          - sensor.temperature_office
-          - sensor.humidity_office
-          - device_tracker.google_maps_116101876784266767195
-      - type: entities
         title: TV-rum
         entities:
           - light.family_room
           - sensor.temperature_family_room
           - sensor.humidity_family_room
           - media_player.family_room_tv
+      - type: entities
+        title: Office
+        entities:
+          - light.office
+          - sensor.temperature_office
+          - sensor.humidity_office
+          - device_tracker.google_maps_116101876784266767195
       - type: entities
         title: Bedroom
         entities:
@@ -45,6 +45,11 @@ views:
             style:
               top: 50%
               left: 40%
+          - type: state-badge
+            entity: media_player.family_room_tv
+            style:
+              top: 28%
+              left: 28%
       - type: picture-elements
         image: /local/floor2-sm.jpg
         elements:
