@@ -1,6 +1,6 @@
-name: Tallgatan 9
+title: Tallgatan 9
 views:
-  - name: Main
+  - title: Main
     theme: dark-mode
     cards:
       - type: entities
