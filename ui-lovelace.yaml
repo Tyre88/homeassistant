@@ -103,3 +103,12 @@ views:
             style:
               top: 85%
               left: 55%
+      - type: entities
+        title: HA monitor
+        entities:
+          - sensor.processor_use
+          - sensor.memory_free
+          - sensor.disk_use_percent_
+          - sensor.ipv4_address_eth0
+          - sensor.network_in_eth0
+          - sensor.network_out_eth0
