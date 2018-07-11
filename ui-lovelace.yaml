@@ -8,46 +8,8 @@ views:
         title: Office
         entities:
           - light.office
-          - sensor.temperature_office
-          - sensor.humidity_office
-          - device_tracker.google_maps_116101876784266767195
-      - type: entities
-        title: Alarm
-        entities:
-          - alarm_control_panel.tallgatan_alarm
-          - sensor.koket_temperature
-          - binary_sensor.huvudingang
-          - binary_sensor.altandorr
-          - binary_sensor.kallare
-      - type: entities
-        title: Family room
-        entities:
-          - light.family_room
-          - sensor.temperature_family_room
-          - sensor.humidity_family_room
-          - media_player.family_room_tv
-      - type: media-control
-        entity: media_player.family_room_tv
-      - type: entities
-        title: Bedroom
-        entities:
-          - light.liam_lamp
-          - light.sovrum_victor
-          - light.bedroom
-          - media_player.vardagsrummet
-      - type: media-control
-        entity: media_player.vardagsrummet
-      - type: entities
-        title: HA monitor
-        entities:
-          - sensor.processor_use
-          - sensor.memory_free
-          - sensor.disk_use_percent_
-          - sensor.ipv4_address_eth0
-          - sensor.network_in_eth0
-          - sensor.network_out_eth0
       - type: picture-elements
-        image: /local/floor1-sm.jpg
+        image: /local/floor1.jpg
         elements:
           - type: state-icon
             tap_action: toggle
