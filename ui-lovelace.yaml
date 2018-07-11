@@ -5,7 +5,7 @@ views:
     theme: dark-mode
     cards:
       - type: picture-elements
-        image: /local/floor1.jpg
+        image: /local/floor1-sm.jpg
         elements:
           - type: state-icon
             tap_action: toggle
