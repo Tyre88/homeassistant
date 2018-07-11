@@ -66,8 +66,8 @@ views:
               entity_id: alarm_control_panel.tallgatan_alarm
               code: !secret code
             style:
-              top: 90%
-              left: 80%
+              top: 95%
+              left: 85%
             title: Larma på
       - type: picture-elements
         image: /local/floor2-sm.jpg
