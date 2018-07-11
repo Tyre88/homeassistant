@@ -46,5 +46,5 @@ views:
             tap_action: toggle
             entity: light.office
             style:
-              top: 20%
+              top: -50%
               left: 20%
