@@ -39,14 +39,14 @@ views:
             tap_action: toggle
             entity: light.family_room
             style:
-              top: 35%
-              left: 12%
+              top: 37%
+              left: 13%
           - type: state-icon
             tap_action: toggle
             entity: light.onoff_plug_1
             style:
-              top: 35%
-              left: 5%
+              top: 32%
+              left: 7%
           - type: state-label
             entity: sensor.koket_temperature
             style:
