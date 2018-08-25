@@ -41,6 +41,12 @@ views:
             style:
               top: 35%
               left: 12%
+          - type: state-icon
+            tap_action: toggle
+            entity: light.onoff_plug_1
+            style:
+              top: 35%
+              left: 5%
           - type: state-label
             entity: sensor.koket_temperature
             style:
