@@ -26,6 +26,10 @@ views:
           - light.sovrum_victor
           - light.bedroom
           - media_player.vardagsrummet
+      - type: entities
+        title: House
+        entities:
+          - light.house_outside_back
       - type: picture-elements
         image: /local/floor1-sm.jpg
         elements:
@@ -76,6 +80,12 @@ views:
               top: 95%
               left: 85%
             title: Larma på
+          - type: state-icon
+            tap_action: toggle
+            entity: light.house_outside_back
+            style:
+              top: 90%
+              left: 50%
       - type: picture-elements
         image: /local/floor2-sm.jpg
         elements:
