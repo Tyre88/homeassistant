@@ -29,6 +29,7 @@ http:
   base_url: disgaea.duckdns.org:8123
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
+  login_attempts_threshold: 5
 
 # Checks for available updates
 # Note: This component will send some information about your system to
