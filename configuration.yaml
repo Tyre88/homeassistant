@@ -118,10 +118,12 @@ switch:
   - platform: mqtt
     name: "Bathroom (new)"
     command_topic: "cmnd/sonoff1/power"
-    state_topic: "stat/sonoff1/power"
+    state_topic: "stat/sonoff1/POWER"
     qos: 1
     payload_on: "ON"
     payload_off: "OFF"
+    state_on: "ON"
+    state_off: "OFF"
     retain: true
 
 # HUE
