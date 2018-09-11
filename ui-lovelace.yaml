@@ -30,6 +30,7 @@ views:
         title: House
         entities:
           - light.house_outside_back
+          - switch.bathroom_new
       - type: picture-elements
         image: /local/floor1-sm.jpg
         elements:
