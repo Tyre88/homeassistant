@@ -61,7 +61,7 @@ sun:
 light:
   - platform: flux_led
     devices:
-      192.168.1.103:
+      192.168.1.105:
         name: House outside back
         mode: "rgbw"
 
