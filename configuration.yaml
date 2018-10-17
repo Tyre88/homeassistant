@@ -64,6 +64,10 @@ light:
       192.168.1.105:
         name: House outside back
         mode: "rgbw"
+  - platform: yeelight
+    devices:
+      192.168.1.115
+        name: Liam room
 
 # Weather prediction
 sensor:
