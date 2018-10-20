@@ -67,7 +67,6 @@ light:
   - platform: yeelight
     devices:
       192.168.1.115
-        name: Liam room
 
 # Weather prediction
 sensor:
