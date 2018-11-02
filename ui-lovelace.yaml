@@ -72,15 +72,15 @@ views:
             style:
               top: 12%
               left: 46%
-          - type: service-button
-            service: alarm_control_panel.alarm_arm_away
-            service_data:
-              entity_id: alarm_control_panel.tallgatan_alarm
-              code: !secret code
-            style:
-              top: 95%
-              left: 85%
-            title: Larma på
+          #- type: service-button
+          #  service: alarm_control_panel.alarm_arm_away
+          #  service_data:
+          #    entity_id: alarm_control_panel.tallgatan_alarm
+          #    code: !secret code
+          #  style:
+          #    top: 95%
+          #    left: 85%
+          #  title: Larma på
           - type: state-icon
             tap_action: toggle
             entity: light.house_outside_back
