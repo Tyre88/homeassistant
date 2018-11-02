@@ -13,6 +13,9 @@ homeassistant:
   # WHITELIST
   whitelist_external_dirs: /tmp/
 
+  auth_providers:
+   - type: trusted_networks
+
 # Show links to resources in log and frontend
 #introduction:
 
@@ -30,6 +33,12 @@ http:
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
   login_attempts_threshold: 5
+
+  trusted_networks:
+    - 127.0.0.1
+    - ::1
+    - 192.168.0.0/24
+    - fd00::/8
 
 # Checks for available updates
 # Note: This component will send some information about your system to
