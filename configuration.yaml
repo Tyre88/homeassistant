@@ -65,6 +65,15 @@ light:
         name: House outside back
         mode: "rgbw"
 
+camera:
+  - platform: xiaomi
+    name: Cam_1
+    host: '192.168.1.116'
+    model: 'xiaofang'
+    password: !secret cam_pass
+    path: /home/camera/feed
+    ffmpeg_arguments: '-vf scale=800:450'
+
 # Weather prediction
 sensor:
   #HA monitor
