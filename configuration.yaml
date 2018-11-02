@@ -55,8 +55,7 @@ logbook:
 # Enables a map showing the location of tracked devices
 map:
 
-# Track the sun
-sun:
+ffmpeg:
 
 light:
   - platform: flux_led
