@@ -25,7 +25,6 @@ views:
           - light.liam_lamp
           - light.sovrum_victor
           - light.bedroom
-          - media_player.family_room_tv
       - type: entities
         title: House
         entities:
