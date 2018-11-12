@@ -45,7 +45,7 @@ views:
             entity: light.tv_led
             style:
               top: 27%
-              left: 30%
+              left: 35%
           - type: state-icon
             tap_action: toggle
             entity: light.family_room
