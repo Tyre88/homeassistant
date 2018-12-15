@@ -23,8 +23,8 @@ views:
       - type: entities
         title: Bedroom
         entities:
-          - light.liam_lamp
-          - light.sovrum_victor
+          - light.dimmable_light_1
+          - light.dimmable_light_1_2
           - light.bedroom
       - type: entities
         title: House
@@ -109,13 +109,13 @@ views:
               left: 30%
           - type: state-icon
             tap_action: toggle
-            entity: light.liam_lamp
+            entity: light.dimmable_light_1
             style:
               top: 23%
               left: 75%
           - type: state-icon
             tap_action: toggle
-            entity: light.sovrum_victor
+            entity: light.dimmable_light_1_2
             style:
               top: 23%
               left: 58%
