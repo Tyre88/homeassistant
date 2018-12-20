@@ -188,6 +188,9 @@ mqtt:
   username: !secret mqtt_username
   password: !secret mqtt_password
 
+tibber:
+  access_token: !secret tibber_api_token
+
 
 
 group: !include groups.yaml
