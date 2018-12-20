@@ -72,21 +72,15 @@ light:
       192.168.1.120:
         name: Tv led
         mode: "rgbw"
-  - platform: yeelight
-    devices:
-      192.168.1.104:
-        name: Liam room
-        save_on_change: True
-        transition: 1000
 
-camera:
-  - platform: xiaomi
-    name: Cam_1
-    host: '192.168.1.116'
-    model: 'xiaofang'
-    password: !secret cam_pass
-    path: /local/cam1
-    ffmpeg_arguments: '-vf scale=800:450'
+#camera:
+#  - platform: xiaomi
+#    name: Cam_1
+#    host: '192.168.1.116'
+#    model: 'xiaofang'
+#    password: !secret cam_pass
+#    path: /local/cam1
+#    ffmpeg_arguments: '-vf scale=800:450'
 
 # Weather prediction
 sensor:
@@ -133,8 +127,8 @@ sensor:
     scan_interval: 600
 
 # Text to speech
-tts:
-  - platform: google
+#tts:
+#  - platform: google
 
 # SWITCH
 switch:
@@ -193,6 +187,9 @@ mqtt:
   client_id: home-assistant-1
   username: !secret mqtt_username
   password: !secret mqtt_password
+
+tibber:
+  access_token: !secret tibber_api_token
 
 
 
