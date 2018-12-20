@@ -189,7 +189,7 @@ mqtt:
   password: !secret mqtt_password
 
 tibber:
-  access_token: !secret tibber_api_token
+  access_token: !secret tibber_api_key
 
 
 
