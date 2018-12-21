@@ -144,6 +144,13 @@ switch:
     retain: true
   - platform: wake_on_lan
     mac_address: !secret pc_mac_address
+    name: "Victor PC"
+    turn_off:
+      service: hassio.addon_stdin
+      data:
+        addon: core_rpc_shutdown
+        input: victor-pc
+
 
 # HUE
 hue:
