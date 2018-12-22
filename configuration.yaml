@@ -123,8 +123,12 @@ sensor:
     name: Trafikverket Road WeatherStation Dörröd
     api_key: !secret trafik_api_key
     station: Dörröd
-    type: air
-    scan_interval: 600
+    monitored_conditions:
+      - air_temp
+      - humidity
+      - wind_direction
+      - wind_direction_text
+      - wind_speed
 
 # Text to speech
 #tts:
