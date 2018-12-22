@@ -152,12 +152,6 @@ switch:
         addon: core_rpc_shutdown
         input: victor-pc
 
-
-# HUE
-hue:
-  bridges:
-    - host: 192.168.1.112
-
 # Verisure
 verisure:
   username: !secret verisure_username
