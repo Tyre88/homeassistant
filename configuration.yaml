@@ -207,6 +207,10 @@ mqtt:
 tibber:
   access_token: !secret tibber_api_key
 
+climate:
+  - platform: sensibo
+    api_key: !secret sensibo_api_key
+
 
 
 group: !include groups.yaml
