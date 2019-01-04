@@ -212,6 +212,13 @@ climate:
     api_key: !secret sensibo_api_key
 
 
+panel_iframe:
+  nodered:
+    title: Node-RED
+    icon: mdi:sitemap
+    url: http://disgaea.duckdns.org:1880
+
+
 
 group: !include groups.yaml
 automation: !include automations.yaml
