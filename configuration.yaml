@@ -216,7 +216,7 @@ panel_iframe:
   nodered:
     title: Node-RED
     icon: mdi:sitemap
-    url: http://disgaea.duckdns.org:1880
+    url: https://disgaea.duckdns.org:1880
 
 
 
