@@ -168,12 +168,6 @@ verisure:
 #    gcm_api_key: !secret gcm_api_key
 #    gcm_sender_id: !secret gcm_sender_id
 
-# Device tracker
-device_tracker:
-  - platform: google_maps
-    username: victorhassio@gmail.com
-    password: !secret password_small
-
 
 mqtt:
   broker: core-mosquitto
