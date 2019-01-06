@@ -28,7 +28,7 @@ config:
 
 http:
   # Secrets are defined in the file secrets.yaml
-  api_password: !secret api_password
+  #api_password: !secret api_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: disgaea.duckdns.org:8123
   ssl_certificate: /ssl/fullchain.pem
@@ -146,20 +146,20 @@ switch:
     state_on: "ON"
     state_off: "OFF"
     retain: true
-  - platform: wake_on_lan
-    mac_address: !secret pc_mac_address
-    name: "Victor PC"
-    host: 192.168.1.118
-    turn_off:
-      service: hassio.addon_stdin
-      data:
-        addon: core_rpc_shutdown
-        input: victor-pc
+  #- platform: wake_on_lan
+  #  mac_address: !secret pc_mac_address
+  #  name: "Victor PC"
+  #  host: 192.168.1.118
+  #  turn_off:
+  #    service: hassio.addon_stdin
+  #    data:
+  #      addon: core_rpc_shutdown
+  #      input: victor-pc
 
 # Verisure
-verisure:
-  username: !secret verisure_username
-  password: !secret verisure_password
+#verisure:
+#  username: !secret verisure_username
+#  password: !secret verisure_password
 
 # HTML5 push
 #notify:
@@ -169,17 +169,17 @@ verisure:
 #    gcm_sender_id: !secret gcm_sender_id
 
 # Device tracker
-device_tracker:
-  - platform: google_maps
-    username: victorhassio@gmail.com
-    password: !secret password_small
+#device_tracker:
+#  - platform: google_maps
+#    username: victorhassio@gmail.com
+#    password: !secret password_small
 
 
-mqtt:
-  broker: core-mosquitto
-  client_id: home-assistant-1
-  username: !secret mqtt_username
-  password: !secret mqtt_password
+#mqtt:
+#  broker: core-mosquitto
+#  client_id: home-assistant-1
+#  username: !secret mqtt_username
+#  password: !secret mqtt_password
 
 #tibber:
 #  access_token: !secret tibber_api_key
