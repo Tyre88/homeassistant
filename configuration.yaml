@@ -31,9 +31,9 @@ config:
 
 http:
   # Secrets are defined in the file secrets.yaml
-  #api_password: !secret api_password
+  api_password: !secret api_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  base_url: https://disgaea.duckdns.org:8123
+  base_url: disgaea.duckdns.org:8123
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
   login_attempts_threshold: 5
