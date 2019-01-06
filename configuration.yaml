@@ -1,6 +1,6 @@
 homeassistant:
   # Name of the location where Home Assistant is running
-  name: "Tallgatan 9"
+  name: Tallgatan9
   # Location required to calculate the time the sun rises and sets
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 32
@@ -60,80 +60,6 @@ logbook:
 map:
 
 ffmpeg:
-
-light:
-  - platform: flux_led
-    devices:
-      192.168.1.114:
-        name: House outside back
-        mode: "rgbw"
-  - platform: flux_led
-    devices:
-      192.168.1.120:
-        name: Tv led
-        mode: "rgbw"
-
-# Weather prediction
-sensor:
-  #HA monitor
-  - platform: systemmonitor
-    resources:
-      - type: disk_use_percent
-        arg: /
-      - type: memory_free
-      - type: processor_use
-      - type: ipv4_address
-        arg: eth0
-      - type: network_in
-        arg: eth0
-      - type: network_out
-        arg: eth0
-  #MQTT
-  - platform: mqtt
-    state_topic: "home/office"
-    name: 'Temperature office'
-    unit_of_measurement: '°C'
-    value_template: '{{ value_json.temperature }}'
-  - platform: mqtt
-    state_topic: "home/office"
-    name: 'Humidity office'
-    unit_of_measurement: '%'
-    value_template: '{{ value_json.humidity }}'
-  - platform: mqtt
-    state_topic: "home/familyroom"
-    name: 'Temperature Family room'
-    unit_of_measurement: '°C'
-    value_template: '{{ value_json.temperature }}'
-  - platform: mqtt
-    state_topic: "home/familyroom"
-    name: 'Humidity Family room'
-    unit_of_measurement: '%'
-    value_template: '{{ value_json.humidity }}'
-
-# Text to speech
-#tts:
-#  - platform: google
-
-# SWITCH
-switch:
-  - platform: mqtt
-    name: "Bathroom (new)"
-    command_topic: "cmnd/sonoff1/power"
-    state_topic: "stat/sonoff1/POWER"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    state_on: "ON"
-    state_off: "OFF"
-    retain: true
-
-
-panel_iframe:
-  nodered:
-    title: Node-RED
-    icon: mdi:sitemap
-    url: https://disgaea.duckdns.org:1880
-
 
 
 group: !include groups.yaml
