@@ -28,7 +28,7 @@ config:
 
 http:
   # Secrets are defined in the file secrets.yaml
-  #api_password: !secret api_password
+
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: disgaea.duckdns.org:8123
   ssl_certificate: /ssl/fullchain.pem
@@ -73,15 +73,6 @@ light:
         name: Tv led
         mode: "rgbw"
 
-#camera:
-#  - platform: xiaomi
-#    name: Cam_1
-#    host: '192.168.1.116'
-#    model: 'xiaofang'
-#    password: !secret cam_pass
-#    path: /local/cam1
-#    ffmpeg_arguments: '-vf scale=800:450'
-
 # Weather prediction
 sensor:
   #HA monitor
@@ -118,17 +109,6 @@ sensor:
     name: 'Humidity Family room'
     unit_of_measurement: '%'
     value_template: '{{ value_json.humidity }}'
-  #TRAFIKVERKET
-  #- platform: trafikverket_weatherstation
-  #  name: Trafikverket Road WeatherStation Dörröd
-  #  api_key: !secret trafik_api_key
-  #  station: Dörröd
-  #  monitored_conditions:
-  #    - air_temp
-  #    - humidity
-  #    - wind_direction
-  #    - wind_direction_text
-  #    - wind_speed
 
 # Text to speech
 #tts:
@@ -146,47 +126,6 @@ switch:
     state_on: "ON"
     state_off: "OFF"
     retain: true
-  #- platform: wake_on_lan
-  #  mac_address: !secret pc_mac_address
-  #  name: "Victor PC"
-  #  host: 192.168.1.118
-  #  turn_off:
-  #    service: hassio.addon_stdin
-  #    data:
-  #      addon: core_rpc_shutdown
-  #      input: victor-pc
-
-# Verisure
-#verisure:
-#  username: !secret verisure_username
-#  password: !secret verisure_password
-
-# HTML5 push
-#notify:
-#  - name: HTML5_push
-#    platform: html5
-#    gcm_api_key: !secret gcm_api_key
-#    gcm_sender_id: !secret gcm_sender_id
-
-# Device tracker
-#device_tracker:
-#  - platform: google_maps
-#    username: victorhassio@gmail.com
-#    password: !secret password_small
-
-
-#mqtt:
-#  broker: core-mosquitto
-#  client_id: home-assistant-1
-#  username: !secret mqtt_username
-#  password: !secret mqtt_password
-
-#tibber:
-#  access_token: !secret tibber_api_key
-
-#climate:
-#  - platform: sensibo
-#    api_key: !secret sensibo_api_key
 
 
 panel_iframe:
