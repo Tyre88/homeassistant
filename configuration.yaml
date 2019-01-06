@@ -9,7 +9,7 @@ homeassistant:
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Stockholm
   # Customization file
-  customize: !include customize.yaml
+  # customize: !include customize.yaml
   # WHITELIST
   whitelist_external_dirs: /tmp/
 
@@ -30,10 +30,10 @@ http:
   # Secrets are defined in the file secrets.yaml
   #api_password: !secret api_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  #base_url: disgaea.duckdns.org:8123
-  #ssl_certificate: /ssl/fullchain.pem
-  #ssl_key: /ssl/privkey.pem
-  #login_attempts_threshold: 5
+  base_url: disgaea.duckdns.org:8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  login_attempts_threshold: 5
 
 # Checks for available updates
 # Note: This component will send some information about your system to
