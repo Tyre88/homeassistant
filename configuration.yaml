@@ -181,12 +181,12 @@ mqtt:
   username: !secret mqtt_username
   password: !secret mqtt_password
 
-#tibber:
-#  access_token: !secret tibber_api_key
+tibber:
+  access_token: !secret tibber_api_key
 
-#climate:
-#  - platform: sensibo
-#    api_key: !secret sensibo_api_key
+climate:
+  - platform: sensibo
+    api_key: !secret sensibo_api_key
 
 
 panel_iframe:
