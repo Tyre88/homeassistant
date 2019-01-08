@@ -175,6 +175,10 @@ hue:
 tibber:
   access_token: !secret tibber_api_key
 
+verisure:
+  username: !secret verisure_username
+  password: !secret verisure_password
+
 mqtt:
   broker: core-mosquitto
   client_id: home-assistant-1
@@ -198,11 +202,11 @@ panel_iframe:
   nodered:
     title: Node-RED
     icon: mdi:sitemap
-    url: http://disgaea.duckdns.org:1880
+    url: https://disgaea.duckdns.org:1880
   portainer:
     title: Portainer
     icon: mdi:docker
-    url: http://disgaea.duckdns.org:9000
+    url: https://disgaea.duckdns.org:9000
 
 
 
