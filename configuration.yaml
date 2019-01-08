@@ -186,12 +186,23 @@ climate:
   - platform: sensibo
     api_key: !secret sensibo_api_key
 
+device_tracker:
+  - platform: traccar
+    host: a0d7b954-traccar
+    port: 8072
+    username: victor
+    password: !secret password_small
+
 
 panel_iframe:
   nodered:
     title: Node-RED
     icon: mdi:sitemap
-    url: https://disgaea.duckdns.org:1880
+    url: http://disgaea.duckdns.org:1880
+  portainer:
+    title: Portainer
+    icon: mdi:docker
+    url: http://disgaea.duckdns.org:9000
 
 
 
