@@ -122,16 +122,16 @@ sensor:
     unit_of_measurement: '%'
     value_template: '{{ value_json.humidity }}'
   #TRAFIKVERKET
-  #- platform: trafikverket_weatherstation
-  #  name: Trafikverket Road WeatherStation Dörröd
-  #  api_key: !secret trafik_api_key
-  #  station: Dörröd
-  #  monitored_conditions:
-  #    - air_temp
-  #    - humidity
-  #    - wind_direction
-  #    - wind_direction_text
-  #    - wind_speed
+  - platform: trafikverket_weatherstation
+    name: Trafikverket Road WeatherStation Dörröd
+    api_key: !secret trafik_api_key
+    station: Dörröd
+    monitored_conditions:
+      - air_temp
+      - humidity
+      - wind_direction
+      - wind_direction_text
+      - wind_speed
 
 # Text to speech
 #tts:
