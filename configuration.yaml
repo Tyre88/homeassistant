@@ -168,6 +168,9 @@ switch:
 #    gcm_api_key: !secret gcm_api_key
 #    gcm_sender_id: !secret gcm_sender_id
 
+hue:
+  bridges:
+    - host: 192.168.1.115
 
 mqtt:
   broker: core-mosquitto
