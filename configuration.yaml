@@ -33,10 +33,11 @@ config:
   # Secrets are defined in the file secrets.yaml
   api_password: !secret api_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  base_url: hometall.duckdns.org
+  # base_url: hometall.duckdns.org
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
   login_attempts_threshold: 5
+  ip_ban_enabled: true
 
 # Checks for available updates
 # Note: This component will send some information about your system to
