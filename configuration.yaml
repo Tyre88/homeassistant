@@ -159,10 +159,7 @@ switch:
         addon: core_rpc_shutdown
         input: victor-pc
 
-# Verisure
-verisure:
-  username: !secret verisure_username
-  password: !secret verisure_password
+
 
 # HTML5 push
 #notify:
@@ -178,8 +175,6 @@ mqtt:
   username: !secret mqtt_username
   password: !secret mqtt_password
 
-tibber:
-  access_token: !secret tibber_api_key
 
 climate:
   - platform: sensibo
