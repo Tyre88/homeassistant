@@ -165,6 +165,10 @@ xiaomi_aqara:
   gateways:
     - key: !secret xiaomi_pass
 
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api
+
 # HTML5 push
 notify:
   - name: HTML5_push
