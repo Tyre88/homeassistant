@@ -160,7 +160,10 @@ switch:
         addon: core_rpc_shutdown
         input: victor-pc
 
-
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_pass
 
 # HTML5 push
 notify:
