@@ -1,0 +1,263 @@
+- action:
+  - data:
+      entity_id: light.family_room
+      transition: 5
+    service: light.turn_off
+  alias: Movie time
+  condition:
+  - after: '19:00:00'
+    condition: time
+  id: '1518001485817'
+  trigger:
+  - entity_id: media_player.family_room_tv
+    platform: state
+    to: playing
+- action:
+  - alias: ''
+    data:
+      group_name: Family room
+      scene_name: Normal
+    service: hue.hue_activate_scene
+  - delay: 00:03:00
+  - data:
+      entity_id: light.family_room
+    service: light.turn_off
+  alias: Movie time off
+  condition:
+  - after: '19:00:00'
+    condition: time
+  id: '1518013135874'
+  trigger:
+  - entity_id: media_player.family_room_tv
+    platform: state
+    to: 'off'
+- action:
+  - data:
+      entity_id: light.family_room
+    service: light.turn_on
+  - data:
+      group_name: Family room
+      scene_name: Normal
+    service: hue.hue_activate_scene
+  alias: Movie pause
+  condition:
+  - after: '19:00:00'
+    condition: time
+  id: '1518015690894'
+  trigger:
+  - entity_id: media_player.family_room_tv
+    platform: state
+    to: paused
+- id: '1518016595553'
+  alias: Victor vakna!
+  trigger:
+  - platform: mqtt
+    topic: android/wakie
+  condition: []
+  action:
+  - data:
+      brightness_pct: 15
+      entity_id: light.liam_lamp
+      transition: 60
+    service: light.turn_on
+  - delay: '600'
+  - data:
+      entity_id: light.liam_lamp
+    service: light.turn_off
+- id: '1518016636265'
+  alias: ''
+  trigger: []
+  condition: []
+  action: []
+- action:
+  - data:
+      group_name: Family room
+      scene_name: Morning
+    service: hue.hue_activate_scene
+  alias: Morning
+  condition: []
+  id: '1518035192497'
+  trigger:
+  - at: 06:00:00
+    platform: time
+- action:
+  - data:
+      entity_id: light.family_room
+    service: light.turn_off
+  alias: Morning off
+  condition: []
+  id: '1518035235136'
+  trigger:
+  - at: 06:45:00
+    platform: time
+- action:
+  - delay: 00:02:00
+  - data:
+      entity_id: light.bedroom
+    service: light.turn_off
+  - data:
+      entity_id: light.family_room
+    service: light.turn_off
+  - data:
+      entity_id: light.liam
+    service: light.turn_off
+  - data:
+      entity_id: light.office
+    service: light.turn_off
+  - data:
+      entity_id: media_player.family_room_tv
+    service: media_player.turn_off
+  alias: Larm på
+  condition: []
+  id: '1518162445883'
+  trigger:
+  - entity_id: alarm_control_panel.tallgatan_alarm
+    from: disarmed
+    platform: state
+    to: armed_away
+- action:
+  - alias: ''
+    data:
+      entity_id: automation.liam_sov_lampa
+    service: automation.trigger
+  - data:
+      brightness_pct: '10'
+      entity_id: light.bedroom
+    service: light.turn_on
+  alias: Larm av (Kväll)
+  condition:
+  - after: '19:00:00'
+    before: 05:00:00
+    condition: time
+  id: '1518162651684'
+  trigger:
+  - entity_id: alarm_control_panel.tallgatan_alarm
+    platform: state
+    to: disarmed
+- id: '1518189920099'
+  alias: Alarm home night
+  trigger:
+  - at: '23:00:00'
+    platform: time
+  - at: '23:59:00'
+    platform: time
+  - at: 01:00:00
+    platform: time
+  - at: 02:00:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      code: !secret code
+      entity_id: alarm_control_panel.tallgatan_alarm
+    service: alarm_control_panel.alarm_arm_home
+- action:
+  - data:
+      code: !secret code
+      entity_id: alarm_control_panel.tallgatan_alarm
+    service: alarm_control_panel.alarm_disarm
+  alias: Alarm off morning
+  condition: []
+  id: '1518189941152'
+  trigger:
+  - at: 05:00:00
+    platform: time
+- id: '1518505263748'
+  alias: Temperature notification
+  trigger:
+  - above: '23'
+    below: '16'
+    entity_id: sensor.koket_temperature
+    platform: numeric_state
+  - above: '23'
+    below: '16'
+    entity_id: sensor.plan_2_temperature
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      data:
+        tag: temperature_notification
+      message: Nu börjar det bli varmt och är över 23 grader i köket!
+      title: Varmt
+    service: notify.pushetta
+- id: '1518799510967'
+  alias: Welcome home
+  trigger:
+  - entity_id: device_tracker.google_maps_116101876784266767195
+    event: enter
+    platform: zone
+    zone: zone.home
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.tallgatan_alarm
+    state: armed_away
+  action:
+  - data:
+      data:
+        actions:
+        - action: alarm_off
+          icon: /static/icons/favicon-192x192.png
+          title: Larma av
+        tag: arrive_home_notification
+      message: Välkommen hem, larma av?
+      title: Larma av?
+    service: notify.html5_push
+- id: '1519128635267'
+  alias: Master bedroom prepare evening
+  trigger:
+  - at: '21:30:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      brightness_pct: 25
+      entity_id: light.bedroom
+    service: light.turn_on
+- id: '1526624082837'
+  alias: Leave home (alarm on ask)
+  trigger:
+  - entity_id: device_tracker.google_maps_116101876784266767195
+    event: leave
+    platform: zone
+    zone: zone.home
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.tallgatan_alarm
+    state: disarmed
+  action:
+  - data:
+      data:
+        actions:
+        - action: alarm_on
+          icon: /static/icons/favicon-192x192.png
+          title: Larma på
+      message: Du lämnar hemmet och har glömt att larma, vill du larma på?
+      title: Larma på?
+    service: notify.html5_push
+- id: '1526626906212'
+  alias: Alarm away
+  trigger:
+  - event_data:
+      action: alarm_on
+    event_type: html5_notification.clicked
+    platform: event
+  condition: []
+  action:
+  - data:
+      code: !secret code
+      entity_id: alarm_control_panel.tallgatan_alarm
+    service: alarm_control_panel.alarm_arm_away
+- id: '1526629850759'
+  alias: Alarm off
+  trigger:
+  - event_data:
+      action: alarm_off
+    event_type: html5_notification.clicked
+    platform: event
+  condition: []
+  action:
+  - data:
+      code: !secret code
+      entity_id: alarm_control_panel.tallgatan_alarm
+    service: alarm_control_panel.alarm_disarm
