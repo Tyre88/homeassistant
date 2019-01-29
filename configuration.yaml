@@ -221,3 +221,7 @@ panel_iframe:
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+
+
+alarm_control_panel: !include alarm.yaml
+panel_custom: !include panel_custom.yaml
