@@ -12,6 +12,7 @@
 platform: bwalarm
 name: House
 code: !secret code
+admin_password: !secret password_small
 pending_time: 25 #Grace time in seconds to allow for exit and entry using Away mode
 trigger_time: 60
 alarm: automation.alarm_triggered
