@@ -15,12 +15,12 @@ code: !secret code
 pending_time: 25 #Grace time in seconds to allow for exit and entry using Away mode
 trigger_time: 60
 #### COLOURS ###########  Use any HTML format
-warning_colour: 'orange'
-pending_colour: 'orange'
-disarmed_colour: '#03A9F4'
-armed_home_colour: 'black'
-armed_away_colour: 'black'
-triggered_colour: 'red'
+warning_color: 'orange'
+pending_color: 'orange'
+disarmed_color: '#03A9F4'
+armed_home_color: 'black'
+armed_away_color: 'black'
+triggered_color: 'red'
 
 ############# SENSOR GROUPS ########################
 # Sensors in this group tigger the alarm immediately
