@@ -14,6 +14,8 @@ name: House
 code: !secret code
 pending_time: 25 #Grace time in seconds to allow for exit and entry using Away mode
 trigger_time: 60
+alarm: automation.alarm_triggered
+warning: automation.alarm_warning
 #delayed:
 #  - binary_sensor.door_front
 #  - binary_sensor.door_kitchen
