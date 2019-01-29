@@ -34,6 +34,24 @@ states:
     pending_time: 0
     warning_time: 0
     trigger_time: 600
+
+users:
+- id: b65071fd2524443ea23dc32428d7c560
+  name: Hass.io
+  enabled: false
+  code: b65071fd2524443ea23dc32428d7c560
+  picture: /local/images/ha.png
+- id: da95ab5f887e4884a0b97e9b3b666e9a
+  name: Victor Öhrström
+  enabled: true
+  code: da95ab5f887e4884a0b97e9b3b666e9a
+  picture: /local/images/ha.png
+- id: 9aed3e9e7a9443aa9dec83d747149fa2
+  name: Victor Mobil
+  enabled: true
+  code: 9aed3e9e7a9443aa9dec83d747149fa2
+  picture: /local/images/ha.png
+
 #delayed:
 #  - binary_sensor.door_front
 #  - binary_sensor.door_kitchen
