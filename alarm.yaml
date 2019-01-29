@@ -29,8 +29,12 @@ states:
     warning_time: 25
     trigger_time: 300
   armed_home:
-    immediate: []
-    delayed: []
+    immediate:
+    - binary_sensor.door_garage
+    delayed:
+    - binary_sensor.door_basement
+    - binary_sensor.door_front
+    - binary_sensor.door_kitchen
     override: []
     pending_time: 0
     warning_time: 0

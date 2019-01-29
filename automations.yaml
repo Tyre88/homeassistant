@@ -259,7 +259,7 @@
   action:
   - data:
       code: 5381
-      entity_id: alarm_control_panel.tallgatan_alarm
+      entity_id: alarm_control_panel.house
     service: alarm_control_panel.alarm_disarm
 - id: alarm_armed_away
   alias: '[Alarm] Away Mode Armed'
@@ -361,3 +361,17 @@
       code: 5381
       entity_id: alarm_control_panel.house
     service: alarm_control_panel.alarm_disarm
+- id: '1548781915262'
+  alias: Alarm push ask disarm
+  trigger: []
+  condition: []
+  action:
+  - data:
+      data:
+        actions:
+        - action: alarm_off
+          icon: /static/icons/favicon-192x192.png
+          title: Ja
+      message: Välkommen hem, vill du larma av?
+      title: Larma av?
+    service: notify.html5_push
