@@ -16,6 +16,23 @@ pending_time: 25 #Grace time in seconds to allow for exit and entry using Away m
 trigger_time: 60
 alarm: automation.alarm_triggered
 warning: automation.alarm_warning
+states:
+  armed_away:
+    immediate:
+    - binary_sensor.door_front
+    - binary_sensor.door_kitchen
+    delayed: []
+    override: []
+    pending_time: '25'
+    warning_time: '25'
+    trigger_time: '300'
+  armed_home:
+    immediate: []
+    delayed: []
+    override: []
+    pending_time: 0
+    warning_time: 0
+    trigger_time: 600
 #delayed:
 #  - binary_sensor.door_front
 #  - binary_sensor.door_kitchen
