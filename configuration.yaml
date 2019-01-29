@@ -181,10 +181,6 @@ hue:
 tibber:
   access_token: !secret tibber_api_key
 
-verisure:
-  username: !secret verisure_username
-  password: !secret verisure_password
-
 mqtt:
   broker: core-mosquitto
   client_id: home-assistant-1
