@@ -61,6 +61,6 @@ panel:
   enable_weather: false
   enable_clock: false
   round_buttons: true
-enable_persistence: false
+enable_persistence: true
 code_to_arm: true
 enable_perimeter_mode: true

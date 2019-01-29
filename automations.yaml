@@ -148,12 +148,12 @@
   condition: []
   action:
   - data:
-      code: !secret code
+      code: 5381
       entity_id: alarm_control_panel.tallgatan_alarm
     service: alarm_control_panel.alarm_arm_home
 - action:
   - data:
-      code: !secret code
+      code: 5381
       entity_id: alarm_control_panel.tallgatan_alarm
     service: alarm_control_panel.alarm_disarm
   alias: Alarm off morning
@@ -245,8 +245,8 @@
   condition: []
   action:
   - data:
-      code: !secret code
-      entity_id: alarm_control_panel.tallgatan_alarm
+      code: 5381
+      entity_id: alarm_control_panel.house
     service: alarm_control_panel.alarm_arm_away
 - id: '1526629850759'
   alias: Alarm off
@@ -258,16 +258,15 @@
   condition: []
   action:
   - data:
-      code: !secret code
+      code: 5381
       entity_id: alarm_control_panel.tallgatan_alarm
     service: alarm_control_panel.alarm_disarm
-
 - id: alarm_armed_away
   alias: '[Alarm] Away Mode Armed'
   trigger:
-  - platform: state
-    entity_id: alarm_control_panel.house
-    to: 'armed_away'
+  - entity_id: alarm_control_panel.house
+    platform: state
+    to: armed_away
   action:
   - data:
       data:
@@ -275,40 +274,31 @@
       message: Larmet är påslaget och igång (Away mode)
       title: Larmat
     service: notify.html5_push
-
+  - data:
+      gw_mac: 04:CF:8C:91:60:79
+      ringtone_id: 10002
+      ringtone_vol: 100
+    service: xiaomi_aqara.play_ringtone
 - id: alarm_armed_home
   alias: '[Alarm] Home Mode Armed'
   trigger:
-  - platform: state
-    entity_id: alarm_control_panel.house
-    to: 'armed_home'
-  action:
-  - data:
-      data:
-        tag: alarm_armed_home_notification
-      title: Larmat (Home mode)
-    service: notify.html5_push
-
+  - entity_id: alarm_control_panel.house
+    platform: state
+    to: armed_home
+  action: []
 - id: alarm_arming_away
   alias: '[Alarm] Away Mode Arming'
   trigger:
-  - platform: state
-    entity_id: alarm_control_panel.house
-    to: 'pending'
-  action:
-  - data:
-      data:
-        tag: alarm_arming_away_notification
-      message: Larmar på (Away mode), se till att alla fönster och dörrar är stängda.
-      title: Larmar på
-    service: notify.html5_push
-
+  - entity_id: alarm_control_panel.house
+    platform: state
+    to: pending
+  action: []
 - id: alarm_disarmed
   alias: '[Alarm] Disarmed'
   trigger:
-  - platform: state
-    entity_id: alarm_control_panel.house
-    to: 'disarmed'
+  - entity_id: alarm_control_panel.house
+    platform: state
+    to: disarmed
   action:
   - data:
       data:
@@ -316,34 +306,40 @@
       message: Välkommen hem!
       title: Avlarmat
     service: notify.html5_push
-
+  - data:
+      gw_mac: 04:CF:8C:91:60:79
+      ringtone_id: 10001
+      ringtone_vol: 30
+    service: xiaomi_aqara.play_ringtone
 - id: alarm_triggered
   alias: '[Alarm] Triggered'
   trigger:
-  - platform: state
-    entity_id: alarm_control_panel.house
-    to: 'triggered'
+  - entity_id: alarm_control_panel.house
+    platform: state
+    to: triggered
   action:
   - data:
       data:
         tag: alarm_triggered_notification
-      message: 'ALARM TRIGGERED!!! {{ states[states.alarm_control_panel.house.attributes.changed_by.split(".")[0]][ states.alarm_control_panel.house.attributes.changed_by.split(".")[1]].name }}'
+      message: ALARM TRIGGERED!!! {{ states[states.alarm_control_panel.house.attributes.changed_by.split(".")[0]][
+        states.alarm_control_panel.house.attributes.changed_by.split(".")[1]].name
+        }}
       title: ALARM TRIGGERED!!!
     service: notify.html5_push
-
+  - data:
+      gw_mac: 04:CF:8C:91:60:79
+      ringtone_id: 0
+      ringtone_vol: 100
+    service: xiaomi_aqara.play_ringtone
 - id: alarm_warning
   alias: '[Alarm] Warning'
   trigger:
-  - platform: state
-    entity_id: alarm_control_panel.house
-    to: 'warning'
+  - entity_id: alarm_control_panel.house
+    platform: state
+    to: warning
   action:
   - data:
-      data:
-        tag: alarm_warning_notification
-      message: 'Hello, the house alarm has been tripped. Please deactivate'
-      title: 'ALARM WARNING'
-    service: notify.html5_push
-
-
-
+      gw_mac: 04:CF:8C:91:60:79
+      ringtone_id: 11
+      ringtone_vol: 15
+    service: xiaomi_aqara.play_ringtone
