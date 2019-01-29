@@ -20,13 +20,14 @@ warning: automation.alarm_warning
 states:
   armed_away:
     immediate:
+    - binary_sensor.door_basement
+    delayed:
     - binary_sensor.door_front
     - binary_sensor.door_kitchen
-    delayed: []
     override: []
-    pending_time: '25'
-    warning_time: '25'
-    trigger_time: '300'
+    pending_time: 25
+    warning_time: 25
+    trigger_time: 300
   armed_home:
     immediate: []
     delayed: []
@@ -34,11 +35,10 @@ states:
     pending_time: 0
     warning_time: 0
     trigger_time: 600
-
 users:
 - id: b65071fd2524443ea23dc32428d7c560
   name: Hass.io
-  enabled: false
+  enabled: true
   code: b65071fd2524443ea23dc32428d7c560
   picture: /local/images/ha.png
 - id: da95ab5f887e4884a0b97e9b3b666e9a
@@ -51,7 +51,16 @@ users:
   enabled: true
   code: 9aed3e9e7a9443aa9dec83d747149fa2
   picture: /local/images/ha.png
-
-#delayed:
-#  - binary_sensor.door_front
-#  - binary_sensor.door_kitchen
+panel:
+  cameras: []
+  enable_sensors_panel: 'True'
+  enable_floorplan_panel: false
+  floorplan: binary_sensor.door_kitchen
+  panel_title: Tallgatan 9 larm
+  camera_update_interval: ''
+  enable_weather: false
+  enable_clock: false
+  round_buttons: true
+enable_persistence: false
+code_to_arm: true
+enable_perimeter_mode: true
