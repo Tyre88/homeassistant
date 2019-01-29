@@ -261,3 +261,45 @@
       code: !secret code
       entity_id: alarm_control_panel.tallgatan_alarm
     service: alarm_control_panel.alarm_disarm
+
+- id: alarm_armed_away
+  alias: '[Alarm] Away Mode Armed'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.house
+    to: 'armed_away'
+
+- id: alarm_armed_home
+  alias: '[Alarm] Home Mode Armed'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.house
+    to: 'armed_home'
+
+- id: alarm_arming_away
+  alias: '[Alarm] Away Mode Arming'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.house
+    to: 'pending'
+
+- id: alarm_disarmed
+  alias: '[Alarm] Disarmed'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.house
+    to: 'disarmed'
+
+- id: alarm_triggered
+  alias: '[Alarm] Triggered'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.house
+    to: 'triggered'
+
+- id: alarm_warning
+  alias: '[Alarm] Warning'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.house
+    to: 'warning'
