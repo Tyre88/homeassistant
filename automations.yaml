@@ -348,3 +348,16 @@
       message: Välkommen hem, vill du larma av?
       title: Larma av?
     service: notify.html5_push
+- id: alarm_off_push
+  alias: '[Alarm] Disarm push action'
+  trigger:
+  - event_data:
+      action: alarm_off
+    event_type: html5_notification.clicked
+    platform: event
+  condition: []
+  action:
+  - data:
+      code: 5381
+      entity_id: alarm_control_panel.house
+    service: alarm_control_panel.alarm_disarm
