@@ -319,11 +319,7 @@
     to: triggered
   action:
   - data:
-      data:
-        tag: alarm_triggered_notification
-      message: ALARM TRIGGERED!!! {{ states[states.alarm_control_panel.house.attributes.changed_by.split(".")[0]][
-        states.alarm_control_panel.house.attributes.changed_by.split(".")[1]].name
-        }}
+      message: ALARM TRIGGERED!!! {{ states[states.alarm_control_panel.house.attributes.changed_by.split('.')[0]][states.alarm_control_panel.house.attributes.changed_by.split('.')[1]].name}}
       title: ALARM TRIGGERED!!!
     service: notify.html5_push
   - data:
@@ -343,3 +339,12 @@
       ringtone_id: 11
       ringtone_vol: 15
     service: xiaomi_aqara.play_ringtone
+  - data:
+      data:
+        actions:
+        - action: alarm_off
+          icon: /static/icons/favicon-192x192.png
+          title: Ja
+      message: Välkommen hem, vill du larma av?
+      title: Larma av?
+    service: notify.html5_push
