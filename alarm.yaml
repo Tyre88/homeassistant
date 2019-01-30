@@ -62,9 +62,20 @@ panel:
   floorplan: binary_sensor.door_kitchen
   panel_title: Tallgatan 9 larm
   camera_update_interval: ''
-  enable_weather: false
+  enable_weather: 'False'
   enable_clock: false
-  round_buttons: true
+  round_buttons: 'True'
 enable_persistence: true
 code_to_arm: true
 enable_perimeter_mode: true
+mqtt:
+  enable_mqtt: true
+  command_topic: home/alarm/set
+  qos: 0
+  payload_arm_away: ARM_AWAY
+  override_code: true
+  payload_arm_home: ARM_HOME
+  state_topic: home/alarm
+  payload_disarm: DISARM
+  pending_on_warning: true
+  payload_arm_night: ARM_NIGHT
