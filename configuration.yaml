@@ -161,9 +161,11 @@ switch:
         input: victor-pc
 
 xiaomi_aqara:
-  discovery_retry: 5
+  discovery_retry: 10
   gateways:
-    - key: !secret xiaomi_pass
+    - mac: "04:CF:8C:91:60:79"
+      key: !secret xiaomi_pass
+      host: 192.168.1.117
 
 weather:
   - platform: darksky
