@@ -133,8 +133,6 @@ sensor:
       - wind_direction
       - wind_direction_text
       - wind_speed
-  - platform: plex
-    host: 192.168.1.118
 
 # Text to speech
 #tts:
