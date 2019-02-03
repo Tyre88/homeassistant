@@ -88,6 +88,12 @@ light:
 
 # Weather prediction
 sensor:
+  - platform: template
+    sensors:
+      hallen:
+        friendly_name: "Hallen"
+        unit_of_measurement: "C"
+        value_template: "{{climate.hallen.attributes.temperature}}"
   #HA monitor
   - platform: systemmonitor
     resources:
