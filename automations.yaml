@@ -145,23 +145,29 @@
     platform: time
   - at: 02:00:00
     platform: time
-  condition: []
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.house
+    state: disarmed
   action:
   - data:
       code: 5381
-      entity_id: alarm_control_panel.tallgatan_alarm
+      entity_id: alarm_control_panel.house
     service: alarm_control_panel.alarm_arm_home
-- action:
+- id: '1518189941152'
+  alias: Alarm off morning
+  trigger:
+  - at: 05:30:00
+    platform: time
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.house
+    state: armed_home
+  action:
   - data:
       code: 5381
-      entity_id: alarm_control_panel.tallgatan_alarm
+      entity_id: alarm_control_panel.house
     service: alarm_control_panel.alarm_disarm
-  alias: Alarm off morning
-  condition: []
-  id: '1518189941152'
-  trigger:
-  - at: 05:00:00
-    platform: time
 - id: '1518505263748'
   alias: Temperature notification
   trigger:
