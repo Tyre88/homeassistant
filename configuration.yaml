@@ -92,11 +92,11 @@ sensor:
     sensors:
       hallen_current_temperature:
         friendly_name: "Hallen current temp"
-        unit_of_measurement: "C"
+        unit_of_measurement: "°C"
         value_template: "{{state_attr('climate.hallen', 'current_temperature')}}"
       hallen_set_temperature:
         friendly_name: "Hallen set temp"
-        unit_of_measurement: "C"
+        unit_of_measurement: "°C"
         value_template: "{{state_attr('climate.hallen', 'temperature')}}"
   #HA monitor
   - platform: systemmonitor
