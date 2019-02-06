@@ -48,22 +48,6 @@
   - entity_id: media_player.family_room_tv
     platform: state
     to: paused
-- id: '1518016595553'
-  alias: Victor vakna!
-  trigger:
-  - platform: mqtt
-    topic: android/wakie
-  condition: []
-  action:
-  - data:
-      brightness_pct: 15
-      entity_id: light.liam_lamp
-      transition: 60
-    service: light.turn_on
-  - delay: '600'
-  - data:
-      entity_id: light.liam_lamp
-    service: light.turn_off
   id: '1518035192497'
   trigger:
   - at: 06:00:00
@@ -411,7 +395,6 @@
       brightness_pct: 1
       entity_id: light.koket
     service: light.turn_on
-  condition: []
 - id: 'office_button_double'
   alias: Office button double press
   trigger:
@@ -420,7 +403,6 @@
       entity_id: binary_sensor.switch_office
     event_type: xiaomi_aqara.click
     platform: event
-  condition: []
   action:
   - data:
       brightness_pct: 100
@@ -434,7 +416,6 @@
       entity_id: binary_sensor.switch_office
     event_type: xiaomi_aqara.click
     platform: event
-  condition: []
   action:
   - data:
       entity_id: light.office
@@ -447,10 +428,8 @@
       entity_id: binary_sensor.switch_office
     event_type: xiaomi_aqara.click
     platform: event
-  condition: []
   action:
   - data:
       brightness_pct: 1
       entity_id: light.office
     service: light.turn_on
-  condition: []
