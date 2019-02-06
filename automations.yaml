@@ -64,27 +64,6 @@
   - data:
       entity_id: light.liam_lamp
     service: light.turn_off
-- id: '1518016636265'
-  alias: Kitchen button single press
-  trigger:
-  - event_data:
-      click_type: single
-      entity_id: binary_sensor.switch_kitchen
-    event_type: xiaomi_aqara.click
-    platform: event
-  condition: []
-  action:
-  - data:
-      brightness_pct: 1
-      entity_id: light.koket
-    service: light.turn_on
-- action:
-  - data:
-      group_name: Family room
-      scene_name: Morning
-    service: hue.hue_activate_scene
-  alias: Morning
-  condition: []
   id: '1518035192497'
   trigger:
   - at: 06:00:00
@@ -418,3 +397,60 @@
       code: 5381
       entity_id: alarm_control_panel.house
     service: alarm_control_panel.alarm_arm_away
+- id: '1518016636265'
+  alias: Kitchen button single press
+  trigger:
+  - event_data:
+      click_type: single
+      entity_id: binary_sensor.switch_kitchen
+    event_type: xiaomi_aqara.click
+    platform: event
+  condition: []
+  action:
+  - data:
+      brightness_pct: 1
+      entity_id: light.koket
+    service: light.turn_on
+  condition: []
+- id: 'office_button_double'
+  alias: Office button double press
+  trigger:
+  - event_data:
+      click_type: double
+      entity_id: binary_sensor.switch_office
+    event_type: xiaomi_aqara.click
+    platform: event
+  condition: []
+  action:
+  - data:
+      brightness_pct: 100
+      entity_id: light.office
+    service: light.turn_on
+- id: 'office_button_long'
+  alias: Office button long press
+  trigger:
+  - event_data:
+      click_type: long_click_press
+      entity_id: binary_sensor.switch_office
+    event_type: xiaomi_aqara.click
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.office
+    service: light.turn_off
+- id: 'office_button_single'
+  alias: Office button single press
+  trigger:
+  - event_data:
+      click_type: single
+      entity_id: binary_sensor.switch_office
+    event_type: xiaomi_aqara.click
+    platform: event
+  condition: []
+  action:
+  - data:
+      brightness_pct: 1
+      entity_id: light.office
+    service: light.turn_on
+  condition: []
