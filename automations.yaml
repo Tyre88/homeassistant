@@ -65,10 +65,19 @@
       entity_id: light.liam_lamp
     service: light.turn_off
 - id: '1518016636265'
-  alias: ''
-  trigger: []
+  alias: Kitchen button single press
+  trigger:
+  - event_data:
+      click_type: single
+      entity_id: binary_sensor.switch_kitchen
+    event_type: xiaomi_aqara.click
+    platform: event
   condition: []
-  action: []
+  action:
+  - data:
+      brightness_pct: 1
+      entity_id: light.koket
+    service: light.turn_on
 - action:
   - data:
       group_name: Family room
@@ -381,3 +390,31 @@
       message: Välkommen hem, vill du larma av?
       title: Larma av?
     service: notify.html5_push
+- id: '1549453451905'
+  alias: Kitchen button double press
+  trigger:
+  - event_data:
+      click_type: double
+      entity_id: binary_sensor.switch_kitchen
+    event_type: xiaomi_aqara.click
+    platform: event
+  condition: []
+  action:
+  - data:
+      brightness_pct: 100
+      entity_id: light.koket
+    service: light.turn_on
+- id: '1549453503292'
+  alias: Kitchen button long press
+  trigger:
+  - event_data:
+      click_type: long_click_press
+      entity_id: binary_sensor.switch_kitchen
+    event_type: xiaomi_aqara.click
+    platform: event
+  condition: []
+  action:
+  - data:
+      code: 5381
+      entity_id: alarm_control_panel.house
+    service: alarm_control_panel.alarm_arm_away
