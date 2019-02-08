@@ -100,7 +100,6 @@ sensor:
         value_template: "{{state_attr('climate.hallen', 'temperature')}}"
       hallen_state:
         friendly_name: "Hallen state"
-        unit_of_measurement: "on/off"
         value_template: "{{states('climate.hallen')}}"
   #HA monitor
   - platform: systemmonitor
