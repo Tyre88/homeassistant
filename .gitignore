@@ -11,3 +11,5 @@ www/
 *.db
 .HA_VERSION
 .uuid
+.storage/
+node-red/

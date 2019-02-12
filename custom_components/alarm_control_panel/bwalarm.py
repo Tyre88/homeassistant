@@ -2,20 +2,12 @@
   CUSTOM ALARM COMPONENT BWALARM
   https://github.com/gazoscalvertos/Hass-Custom-Alarm
 
-  VERSION:  1.1.3
-  MODIFIED: 13/11/18
+  VERSION:  1.1.4
+  MODIFIED: 10/02/19
   GazosCalvertos: Yet another take on a custom alarm for Home Assistant
 
   CHANGE LOG:
-  -Fixed PERSISTENCE
-  -Removed Windows line breaks
-  -fixed mqtt?
-  -fixed automation/switch trigger
-  -added option to disable animations in panel
-  -Rejigged logs
-  -modified mqtt config
-  -fixed 0.82 compatibility
-  -fixed persistance mode
+  -Fixed username issue in log
 
 """
 
@@ -313,7 +305,8 @@ try:
 except Exception as e:
     _LOGGER.warning('Import Error: %s. Attempting to download and import', e)
 
-async def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
+@asyncio.coroutine
+def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
 
     #Setup MQTT if enabled
     mqtt = None
@@ -443,11 +436,17 @@ class BWAlarm(alarm.AlarmControlPanel):
                   self._returnto  = self._persistence_list["returnto"]
                   self._armstate  = self._persistence_list["armstate"]
 
-                  if (self._armstate != "disarmed"):
+                  for self._armstate in SUPPORTED_PENDING_STATES:
                       self._states    = self._persistence_list["states"]
                       self.immediate  = self._states[self._state]["immediate"]
                       self.delayed    = self._states[self._state]["delayed"]
                       self.override   = self._states[self._state]["override"]
+
+                  if (self._armstate == STATE_ALARM_WARNING or self._armstate == STATE_ALARM_TRIGGERED or self._armstate == STATE_ALARM_PENDING):
+                      self._states    = self._persistence_list["states"]
+                      self.immediate  = self._states[self._returnto]["immediate"]
+                      self.delayed    = self._states[self._returnto]["delayed"]
+                      self.override   = self._states[self._returnto]["override"]
 
     # Alarm properties
     @property
@@ -694,13 +693,13 @@ class BWAlarm(alarm.AlarmControlPanel):
         if self._validate_panic_code(code):
             self.process_event(Events.Disarm)
             self._panic_mode = "ACTIVE"
-            self._update_log('HA', LOG.DISARMED, None) #Show a default disarm message incase this is displayed on the interface
+            self._update_log(None, LOG.DISARMED, None) #Show a default disarm message incase this is displayed on the interface
             # Let HA know that something changed
             self.schedule_update_ha_state()
             return
 
         if not self._validate_code(code):
-            self._update_log('HA', LOG.DISARM_FAIL, None)
+            self._update_log(None, LOG.DISARM_FAIL, None)
             return
         self.process_event(Events.Disarm)
 
@@ -734,7 +733,7 @@ class BWAlarm(alarm.AlarmControlPanel):
 
     def alarm_trigger(self, code=None):
         self.process_event(Events.Trigger)
-        self._update_log('HA', LOG.TRIGGERED, None)
+        self._update_log(None, LOG.TRIGGERED, None)
 
     ### Internal processing
     def setsignals(self, alarmMode):
@@ -812,7 +811,7 @@ class BWAlarm(alarm.AlarmControlPanel):
                 if self._config.get(CONF_WARNING):
                     self._hass.services.call(self._config.get(CONF_WARNING).split('.')[0], 'turn_on', {'entity_id':self._config.get(CONF_WARNING)})
                 self._timeoutat = now() +  datetime.timedelta(seconds=int(self._states[self._armstate][CONF_WARNING_TIME]))
-                self._update_log('HA', LOG.TRIPPED, self._lasttrigger)
+                self._update_log(None, LOG.TRIPPED, self._lasttrigger)
             elif new_state == STATE_ALARM_TRIGGERED:
                 _LOGGER.debug("[ALARM] Turning on alarm")
                 if self._config.get(CONF_ALARM):
@@ -821,7 +820,7 @@ class BWAlarm(alarm.AlarmControlPanel):
                     self._timeoutat = now() + datetime.timedelta(hours=int(24))
                 else:
                     self._timeoutat = now() + datetime.timedelta(seconds=int(self._states[self._armstate][CONF_TRIGGER_TIME]))
-                self._update_log('HA', LOG.TRIPPED, self._lasttrigger)
+                self._update_log(None, LOG.TRIPPED, self._lasttrigger)
             elif new_state == STATE_ALARM_PENDING:
                 _LOGGER.debug("[ALARM] Pending user leaving house")
                 if self._config.get(CONF_WARNING):
@@ -863,7 +862,7 @@ class BWAlarm(alarm.AlarmControlPanel):
         if ((int(self._passcode_attempt_allowed) == -1) or (self._passcodeAttemptNo <= int(self._passcode_attempt_allowed))):
             check = self._code is None or code == self._code or self._validate_user_codes(code)
             if code == self._code:
-                self._update_log('HA', LOG.DISARMED, None)
+                self._update_log(None, LOG.DISARMED, None)
             return self._validate_code_attempts(check)
         else:
             _LOGGER.warning("[ALARM] Too many passcode attempts, try again later")
@@ -887,7 +886,7 @@ class BWAlarm(alarm.AlarmControlPanel):
                 self._panel_locked = True
                 self._passcode_timeoutat = now() + datetime.timedelta(seconds=int(self._passcode_attempt_timeout))
                 _LOGGER.warning("[ALARM] Panel locked, too many passcode attempts!")
-                self._update_log('HA', LOG.LOCKED, None)
+                self._update_log(None, LOG.LOCKED, None)
         self.schedule_update_ha_state()
         return check
 
@@ -900,6 +899,8 @@ class BWAlarm(alarm.AlarmControlPanel):
         return check
 
     def _update_log(self, id, message, entity_id):
+        if (id == None or id == ''):
+            id = 'HA'
         self.changedbyuser = id
         if (CONF_ENABLE_LOG in self._config):
             self._log_size = int(self._config[CONF_LOG_SIZE]) if CONF_LOG_SIZE in self._config else 10
@@ -917,6 +918,7 @@ class BWAlarm(alarm.AlarmControlPanel):
                 self._passcodeAttemptNo = 0
                 self.schedule_update_ha_state()
 
+    @asyncio.coroutine
     def async_added_to_hass(self):
         """Subscribe mqtt events.
         This method must be run in the event loop and returns a coroutine.
@@ -934,15 +936,15 @@ class BWAlarm(alarm.AlarmControlPanel):
                 #_LOGGER.warning("Disarming %s", payload)
                 #TODO self._hass.states.get('binary_sensor.siren_sensor') #Use this method to relay open states
                 if (self._override_code):
-                    self.async_alarm_disarm(self._code)
+                    self.alarm_disarm(self._code)
                 else:
-                    self.async_alarm_disarm(payload.split(" ")[1])
+                    self.alarm_disarm(payload.split(" ")[1])
             elif payload == self._payload_arm_home:
-                self.async_alarm_arm_home('override')
+                self.alarm_arm_home('')
             elif payload == self._payload_arm_away:
-                self.async_alarm_arm_away(self._code)
+                self.alarm_arm_away('')
             elif payload == self._payload_arm_night:
-                self.async_alarm_arm_night('')
+                self.alarm_arm_night('')
             else:
                 _LOGGER.warning("[ALARM/MQTT] Received unexpected payload: %s", payload)
                 return
@@ -950,7 +952,8 @@ class BWAlarm(alarm.AlarmControlPanel):
             return self._mqtt.async_subscribe(
                 self._hass, self._command_topic, message_received, self._qos)
 
-    async def _async_state_changed_listener(self, entity_id, old_state, new_state):
+    @asyncio.coroutine
+    def _async_state_changed_listener(self, entity_id, old_state, new_state):
         """Publish state change to MQTT."""
         if (self._config[CONF_MQTT][CONF_ENABLE_MQTT]):
             state = new_state.state

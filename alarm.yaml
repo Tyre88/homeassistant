@@ -13,10 +13,12 @@ platform: bwalarm
 name: House
 code: !secret code
 admin_password: !secret password_small
-pending_time: 25 #Grace time in seconds to allow for exit and entry using Away mode
-trigger_time: 60
-alarm: automation.alarm_triggered
-warning: automation.alarm_warning
+panel:
+  cameras: []
+  panel_title: ''
+  camera_update_interval: ''
+  round_buttons: 'True'
+  enable_sensors_panel: true
 states:
   armed_away:
     immediate:
@@ -25,57 +27,38 @@ states:
     - binary_sensor.door_front
     - binary_sensor.door_kitchen
     override: []
-    pending_time: 25
-    warning_time: 25
-    trigger_time: 300
+    pending_time: 0
+    warning_time: 0
+    trigger_time: 600
   armed_home:
     immediate:
+    - binary_sensor.door_basement
     - binary_sensor.door_garage
     delayed:
-    - binary_sensor.door_basement
     - binary_sensor.door_front
     - binary_sensor.door_kitchen
     override: []
     pending_time: 0
     warning_time: 0
     trigger_time: 600
+  armed_perimeter:
+    immediate: []
+    delayed: []
+    override: []
+    pending_time: 0
+    warning_time: 0
+    trigger_time: 600
 users:
-- id: b65071fd2524443ea23dc32428d7c560
+- id: 9be2ec93a12e4fb495f7b794ab0cbc2e
   name: Hass.io
   enabled: true
-  code: b65071fd2524443ea23dc32428d7c560
+  code: 9be2ec93a12e4fb495f7b794ab0cbc2e
   picture: /local/images/ha.png
-- id: da95ab5f887e4884a0b97e9b3b666e9a
-  name: Victor Öhrström
+- id: 77d81f8fc7ce43aea9c7fe0c3b8ab107
+  name: victor
   enabled: true
-  code: da95ab5f887e4884a0b97e9b3b666e9a
+  code: 77d81f8fc7ce43aea9c7fe0c3b8ab107
   picture: /local/images/ha.png
-- id: 9aed3e9e7a9443aa9dec83d747149fa2
-  name: Victor Mobil
-  enabled: true
-  code: 9aed3e9e7a9443aa9dec83d747149fa2
-  picture: /local/images/ha.png
-panel:
-  cameras: []
-  enable_sensors_panel: 'True'
-  enable_floorplan_panel: false
-  floorplan: binary_sensor.door_kitchen
-  panel_title: Tallgatan 9 larm
-  camera_update_interval: ''
-  enable_weather: 'False'
-  enable_clock: false
-  round_buttons: 'True'
+enable_perimeter_mode: false
+code_to_arm: false
 enable_persistence: true
-code_to_arm: true
-enable_perimeter_mode: true
-mqtt:
-  enable_mqtt: true
-  command_topic: home/alarm/set
-  qos: 0
-  payload_arm_away: ARM_AWAY
-  override_code: true
-  payload_arm_home: ARM_HOME
-  state_topic: home/alarm
-  payload_disarm: DISARM
-  pending_on_warning: true
-  payload_arm_night: ARM_NIGHT
