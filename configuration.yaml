@@ -40,6 +40,9 @@ http:
   ssl_key: /ssl/privkey.pem
   login_attempts_threshold: 5
   ip_ban_enabled: true
+  trusted_networks:
+    - 127.0.0.1
+    - 192.168.1.0/24
 
 # Checks for available updates
 # Note: This component will send some information about your system to
