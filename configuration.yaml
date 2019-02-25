@@ -81,6 +81,11 @@ light:
       192.168.1.120:
         name: Tv led
         mode: "rgbw"
+  - platform: flux_led
+    devices:
+      192.168.1.125:
+        name: Kitchen strip
+        mode: "rgbw"
 
 #camera:
 #  - platform: xiaomi
