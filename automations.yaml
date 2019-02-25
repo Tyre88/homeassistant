@@ -246,7 +246,7 @@
       brightness_pct: 1
       entity_id: light.koket
     service: light.turn_on
-- id: 'office_button_double'
+- id: office_button_double
   alias: Office button double press
   trigger:
   - event_data:
@@ -259,7 +259,7 @@
       brightness_pct: 100
       entity_id: light.office
     service: light.turn_on
-- id: 'office_button_long'
+- id: office_button_long
   alias: Office button long press
   trigger:
   - event_data:
@@ -271,7 +271,7 @@
   - data:
       entity_id: light.office
     service: light.turn_off
-- id: 'office_button_single'
+- id: office_button_single
   alias: Office button single press
   trigger:
   - event_data:
@@ -284,3 +284,14 @@
       brightness_pct: 1
       entity_id: light.office
     service: light.turn_on
+- id: '1551114672155'
+  alias: Kitchen turn off strip
+  trigger:
+  - entity_id: light.koket
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      entity_id: light.kitchen_strip
+    service: light.turn_off
