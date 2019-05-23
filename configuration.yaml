@@ -250,19 +250,13 @@ script: !include scripts.yaml
 alarm_control_panel:
   - platform: manual
     name: Home Alarm
-    code_template: >-
-      {% if is_state('alarm_control_panel.home_alarm', 'armed_away') %}
-        1234
-      {% elif is_state('alarm_control_panel.home_alarm', 'armed_home') %}
-        1234
-      {% elif is_state('alarm_control_panel.home_alarm', 'armed_night') %}
-        1234
-      {% endif %}
+    code: 1234
     pending_time: 30
     delay_time: 20
     trigger_time: 4
     disarmed:
       trigger_time: 0
+      code: 
     armed_home:
       pending_time: 0
       delay_time: 0
