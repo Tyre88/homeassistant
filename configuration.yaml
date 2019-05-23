@@ -250,7 +250,7 @@ script: !include scripts.yaml
 alarm_control_panel:
   - platform: manual
     name: Home Alarm
-    code_template: 
+    code_template: >-
       {% if is_state('alarm_control_panel.home_alarm', 'armed_away') %}
         1234
       {% elif is_state('alarm_control_panel.home_alarm', 'armed_home') %}
