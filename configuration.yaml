@@ -227,11 +227,11 @@ climate:
 #    password: !secret password_small
 
 
-panel_iframe:
-  nodered:
-    title: Node-RED
-    icon: mdi:sitemap
-    url: https://disgaea.duckdns.org:1880
+#panel_iframe:
+#  nodered:
+#    title: Node-RED
+#    icon: mdi:sitemap
+#    url: https://disgaea.duckdns.org:1880
 #  portainer:
 #    title: Portainer
 #    icon: mdi:docker
@@ -244,5 +244,18 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 
 
-alarm_control_panel: !include alarm.yaml
-panel_custom: !include panel_custom.yaml
+# alarm_control_panel: !include alarm.yaml
+# panel_custom: !include panel_custom.yaml
+
+alarm_control_panel:
+  - platform: manual
+    name: Home Alarm
+    code: 1234
+    pending_time: 30
+    delay_time: 20
+    trigger_time: 4
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      pending_time: 0
+      delay_time: 0
