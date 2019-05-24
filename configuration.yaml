@@ -198,9 +198,9 @@ weather:
 notify:
   - name: HTML5_push
     platform: html5
-    vapid_pub_key: !secret vapid_pub_key
-    vapid_prv_key: !secret vapid_prv_key
-    vapid_email: !secret vapid_email
+    vapid_pub_key: test #!secret vapid_pub_key
+    vapid_prv_key: test #!secret vapid_prv_key
+    vapid_email: test@test.se #!secret vapid_email
 
 hue:
   bridges:
