@@ -253,8 +253,8 @@ alarm_control_panel:
     name: Home Alarm
     code: !secret code
     pending_time: 30
-    delay_time: 20
-    trigger_time: 4
+    delay_time: 30
+    trigger_time: 600
     disarmed:
       trigger_time: 0
     armed_home:
