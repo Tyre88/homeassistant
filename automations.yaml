@@ -11,12 +11,12 @@
     platform: time
   condition:
   - condition: state
-    entity_id: alarm_control_panel.house
+    entity_id: alarm_control_panel.home_alarm
     state: disarmed
   action:
   - data:
       code: 5381
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.home_alarm
     service: alarm_control_panel.alarm_arm_home
 - id: '1518189941152'
   alias: Alarm off morning
@@ -25,12 +25,12 @@
     platform: time
   condition:
   - condition: state
-    entity_id: alarm_control_panel.house
+    entity_id: alarm_control_panel.home_alarm
     state: armed_home
   action:
   - data:
       code: 5381
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.home_alarm
     service: alarm_control_panel.alarm_disarm
 - id: '1519128635267'
   alias: Master bedroom prepare evening
@@ -75,7 +75,7 @@
   action:
   - data:
       code: 5381
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.home_alarm
     service: alarm_control_panel.alarm_arm_away
 - id: '1526629850759'
   alias: Alarm off
@@ -88,12 +88,12 @@
   action:
   - data:
       code: 5381
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.home_alarm
     service: alarm_control_panel.alarm_disarm
 - id: alarm_armed_away
   alias: '[Alarm] Away Mode Armed'
   trigger:
-  - entity_id: alarm_control_panel.house
+  - entity_id: alarm_control_panel.home_alarm
     platform: state
     to: armed_away
   action:
@@ -111,21 +111,21 @@
 - id: alarm_armed_home
   alias: '[Alarm] Home Mode Armed'
   trigger:
-  - entity_id: alarm_control_panel.house
+  - entity_id: alarm_control_panel.home_alarm
     platform: state
     to: armed_home
   action: []
 - id: alarm_arming_away
   alias: '[Alarm] Away Mode Arming'
   trigger:
-  - entity_id: alarm_control_panel.house
+  - entity_id: alarm_control_panel.home_alarm
     platform: state
     to: pending
   action: []
 - id: alarm_disarmed
   alias: '[Alarm] Disarmed'
   trigger:
-  - entity_id: alarm_control_panel.house
+  - entity_id: alarm_control_panel.home_alarm
     platform: state
     to: disarmed
   action:
@@ -142,13 +142,10 @@
     service: xiaomi_aqara.play_ringtone
 - id: alarm_triggered
   alias: '[Alarm] Triggered'
-  trigger:
-  - entity_id: alarm_control_panel.house
-    platform: state
-    to: triggered
+  trigger: []
   action:
   - data:
-      message: ALARM TRIGGERED!!! {{ states[states.alarm_control_panel.house.attributes.changed_by.split('.')[0]][states.alarm_control_panel.house.attributes.changed_by.split('.')[1]].name}}
+      message: ALARM TRIGGERED!!!
       title: ALARM TRIGGERED!!!
     service: notify.html5_push
   - data:
@@ -158,16 +155,8 @@
     service: xiaomi_aqara.play_ringtone
 - id: alarm_warning
   alias: '[Alarm] Warning'
-  trigger:
-  - entity_id: alarm_control_panel.house
-    platform: state
-    to: warning
+  trigger: []
   action:
-  - data:
-      gw_mac: 04:CF:8C:91:60:79
-      ringtone_id: 11
-      ringtone_vol: 15
-    service: xiaomi_aqara.play_ringtone
   - data:
       data:
         actions:
@@ -188,7 +177,7 @@
   action:
   - data:
       code: 5381
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.home_alarm
     service: alarm_control_panel.alarm_disarm
 - id: '1548781915262'
   alias: Alarm push ask disarm
@@ -230,7 +219,7 @@
   action:
   - data:
       code: 5381
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.home_alarm
     service: alarm_control_panel.alarm_arm_away
 - id: '1518016636265'
   alias: Kitchen button single press
