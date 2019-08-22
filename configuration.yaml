@@ -268,3 +268,5 @@ alarm_control_panel:
 
 tradfri:
   host: 192.168.1.107
+
+mobile_app:
