@@ -1,0 +1,22 @@
+hallway:
+  name: Hallen
+  entities:
+    - light.hall_1
+    - light.hall_2
+    - light.hall_3
+    - light.hall_4
+    - light.hall_uppe_1
+    - light.hall_uppe_2
+    - light.hall_uppe_3
+liam:
+  name: Liam
+  entities:
+    - light.liam_tak_1
+    - light.liam_tak_2
+    - light.liam_tak_3
+office:
+  name: Kontoret
+  entities:
+    - light.kontoret_lampa_1
+    - light.kontoret_lampa_2
+    - light.kontoret_lampa_3
