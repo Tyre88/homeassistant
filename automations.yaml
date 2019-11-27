@@ -102,7 +102,7 @@
         tag: alarm_armed_away_notification
       message: Larmet är påslaget och igång (Away mode)
       title: Larmat
-    service: notify.html5_push
+    service: notify.mobile_app_victor_ohrstrom_s_lya_l29
   - data:
       gw_mac: 04:CF:8C:91:60:79
       ringtone_id: 10002
@@ -134,7 +134,7 @@
         tag: alarm_disarmed_notification
       message: Välkommen hem!
       title: Avlarmat
-    service: notify.html5_push
+    service: notify.mobile_app_victor_ohrstrom_s_lya_l29
   - data:
       gw_mac: 04:CF:8C:91:60:79
       ringtone_id: 10001
@@ -288,7 +288,7 @@
 - id: '1565203371505'
   alias: Liam trigger night
   trigger:
-  - entity_id: light.liam_fonster_lampa
+  - entity_id: light.liam_fonster
     from: 'off'
     platform: state
     to: 'on'
@@ -301,10 +301,14 @@
       brightness_pct: 1
       entity_id: light.sovrum_2
     service: light.turn_on
+  - data:
+      brightness_pct: '1'
+      entity_id: light.hall_1, light.hall_2, light.hall_3, light.hall_4
+    service: light.turn_on
 - id: '1565203602936'
   alias: Liam trigger night off
   trigger:
-  - entity_id: light.liam_fonster_lampa
+  - entity_id: light.liam_fonster
     from: 'on'
     platform: state
     to: 'off'
@@ -316,3 +320,51 @@
   - data:
       entity_id: light.sovrum_2
     service: light.turn_off
+  - data:
+      entity_id: light.hall_1, light.hall_2, light.hall_3, light.hall_4
+    service: light.turn_off
+- id: '1572341136263'
+  alias: Välkommen hem
+  description: När min mobil kommer hem
+  trigger:
+  - event: enter
+    platform: geo_location
+    source: device_tracker.victor
+    zone: zone.hem
+  condition: []
+  action:
+  - data:
+      data:
+        actions:
+        - action: alarm_off
+          icon: /static/icons/favicon-192x192.png
+          title: Ja
+      message: Välkommen hem, larma av?
+      title: Larma av?
+    service: notify.mobile_app_victor_ohrstrom_s_lya_l29
+- id: '1574871299562'
+  alias: Leave home
+  description: ''
+  trigger:
+  - entity_id: device_tracker.dc_16_b2_af_85_73
+    platform: state
+    to: not_home
+  condition: []
+  action:
+  - data:
+      message: test tracker
+      title: test
+    service: notify.mobile_app_victor_ohrstrom_s_lya_l29
+- id: '1574871873762'
+  alias: Arrive home
+  description: ''
+  trigger:
+  - entity_id: device_tracker.dc_16_b2_af_85_73
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data:
+      message: nu e vi hemma enl device tracker
+      title: hemma
+    service: notify.mobile_app_victor_ohrstrom_s_lya_l29
