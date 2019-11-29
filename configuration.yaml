@@ -92,8 +92,15 @@ light:
         name: Kitchen strip
         mode: "rgbw"
 
+camera:
+  - platform: onvif
+    host: 192.168.1.128
+    username: admin
+    password: !secret password_small
+
 #camera:
-#  - platform: xiaomi
+#  - platform: generic
+#    still_image_url: http://194.218.96.92/jpg/image.jpg
 #    name: Cam_1
 #    host: '192.168.1.116'
 #    model: 'xiaofang'
