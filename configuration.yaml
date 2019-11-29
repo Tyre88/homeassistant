@@ -281,7 +281,7 @@ tradfri:
 
 device_tracker:
   - platform: nmap_tracker
-    hosts: 192.168.1.100-120
+    hosts: 192.168.1.100-105
     home_interval: 10
 
 mobile_app:
