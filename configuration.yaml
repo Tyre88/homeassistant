@@ -96,9 +96,10 @@ camera:
   - platform: onvif
     name: 'Cam 1'
     host: 192.168.1.128
-    port: 80
+    port: 1935
     username: admin
     password: !secret password_small
+
 
 #camera:
 #  - platform: generic
