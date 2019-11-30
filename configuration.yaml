@@ -99,6 +99,7 @@ camera:
     port: 8080
     username: admin
     password: !secret password_small
+    profile: 1
 
 
 #camera:
