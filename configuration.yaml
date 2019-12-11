@@ -95,7 +95,7 @@ light:
 camera:
   - platform: onvif
     name: 'Cam 1'
-    host: 192.168.1.128
+    host: 192.168.1.124
     port: 8080
     username: admin
     password: !secret password_small
@@ -179,6 +179,14 @@ sensor:
       - wind_direction
       - wind_direction_text
       - wind_speed
+  - platform: trafikverket_train
+    api_key: !secret trafik_api_key
+    trains:
+    - name: "Train to work"
+      from: Sölvesborg
+      to: Kristianstad C
+      time: "07:28"
+      weekday: [mon, tue, wed, thu, fri]
 
 # Text to speech
 #tts:
