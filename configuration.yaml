@@ -308,3 +308,4 @@ notify_hasskit:
 #    home_interval: 10
 
 mobile_app:
+stream:
