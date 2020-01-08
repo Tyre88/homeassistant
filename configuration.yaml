@@ -13,7 +13,7 @@ homeassistant:
   # WHITELIST
   whitelist_external_dirs: 
   - /tmp/
-  - /config/
+  - /config/www/
 
   latitude: !secret lat
   longitude: !secret long
