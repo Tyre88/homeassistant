@@ -11,7 +11,9 @@ homeassistant:
   # Customization file
   #customize: !include customize.yaml
   # WHITELIST
-  whitelist_external_dirs: /tmp/
+  whitelist_external_dirs: 
+  - /tmp/
+  - /config/tmp
 
   latitude: !secret lat
   longitude: !secret long
