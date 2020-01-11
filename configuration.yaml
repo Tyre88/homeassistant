@@ -300,9 +300,9 @@ alarm_control_panel:
 tradfri:
   host: 192.168.1.107
 
-notify_hasskit: 
-  token:
-    - !secret notify_token
+#notify_hasskit: 
+#  token:
+#    - !secret notify_token
 
 #device_tracker:
 #  - platform: nmap_tracker
