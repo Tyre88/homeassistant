@@ -123,6 +123,16 @@ camera:
 
 # Weather prediction
 sensor:
+  - platform: sma
+    host: 192.168.1.124
+    ssl: true
+    verify_ssl: false
+    password: !secret password_small
+    sensors:
+      - current_consumption
+      - total_consumption
+      - pv_power
+      - total_yield
   - platform: template
     sensors:
       hallen_current_temperature:
