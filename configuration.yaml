@@ -133,6 +133,14 @@ sensor:
       - total_consumption
       - pv_power
       - total_yield
+      - daily_yield
+      - status
+      - current_consumption
+    custom:
+      yesterday_consumption:
+        key: '6400_00543A01'
+        unit: kWh
+        factor: 1000
   - platform: template
     sensors:
       hallen_current_temperature:
