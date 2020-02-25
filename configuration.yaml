@@ -103,24 +103,6 @@ camera:
     password: !secret password_small
     profile: 1
 
-
-#camera:
-#  - platform: generic
-#    name: Cam 1
-#    still_image_url: http://192.168.1.128/jpg/image.jpg
-#    stream_source: rtsp://192.168.1.128:554
-
-
-#camera:
-#  - platform: generic
-#    still_image_url: http://194.218.96.92/jpg/image.jpg
-#    name: Cam_1
-#    host: '192.168.1.116'
-#    model: 'xiaofang'
-#    password: !secret cam_pass
-#    path: /local/cam1
-#    ffmpeg_arguments: '-vf scale=800:450'
-
 # Weather prediction
 sensor:
   - platform: sma
@@ -167,27 +149,6 @@ sensor:
         arg: eth0
       - type: network_out
         arg: eth0
-  #MQTT
-  - platform: mqtt
-    state_topic: "home/office"
-    name: 'Temperature office'
-    unit_of_measurement: '°C'
-    value_template: '{{ value_json.temperature }}'
-  - platform: mqtt
-    state_topic: "home/office"
-    name: 'Humidity office'
-    unit_of_measurement: '%'
-    value_template: '{{ value_json.humidity }}'
-  - platform: mqtt
-    state_topic: "home/familyroom"
-    name: 'Temperature Family room'
-    unit_of_measurement: '°C'
-    value_template: '{{ value_json.temperature }}'
-  - platform: mqtt
-    state_topic: "home/familyroom"
-    name: 'Humidity Family room'
-    unit_of_measurement: '%'
-    value_template: '{{ value_json.humidity }}'
   #TRAFIKVERKET
   - platform: trafikverket_weatherstation
     name: Trafikverket Road WeatherStation Dörröd
@@ -199,31 +160,11 @@ sensor:
       - wind_direction
       - wind_direction_text
       - wind_speed
-  - platform: trafikverket_train
-    api_key: !secret trafik_api_key
-    trains:
-    - name: "Train to work"
-      from: Sölvesborg
-      to: Kristianstad C
-      time: "07:28"
-      weekday: [mon, tue, wed, thu, fri]
 
 # Text to speech
 #tts:
 #  - platform: google
 
-# SWITCH
-switch:
-  - platform: mqtt
-    name: "Bathroom (new)"
-    command_topic: "cmnd/sonoff1/power"
-    state_topic: "stat/sonoff1/POWER"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    state_on: "ON"
-    state_off: "OFF"
-    retain: true
 #  - platform: wake_on_lan
 #    mac_address: !secret pc_mac_address
 #    name: "Victor PC"
@@ -245,50 +186,13 @@ weather:
   - platform: darksky
     api_key: !secret darksky_api
 
-# HTML5 push
-notify:
-  - name: HTML5_push
-    platform: html5
-    vapid_pub_key: !secret vapid_pub_key
-    vapid_prv_key: !secret vapid_prv_key
-    vapid_email: !secret vapid_email
-
-#hue:
-#  bridges:
-#    - host: 192.168.1.115
-
 tibber:
   access_token: !secret tibber_api_key
-
-mqtt:
-  broker: core-mosquitto
-  client_id: home-assistant-1
-  username: !secret mqtt_username
-  password: !secret mqtt_password
 
 
 climate:
   - platform: sensibo
     api_key: !secret sensibo_api_key
-
-#device_tracker:
-#  - platform: traccar
-#    host: a0d7b954-traccar
-#    port: 8072
-#    username: victor
-#    password: !secret password_small
-
-
-#panel_iframe:
-#  nodered:
-#    title: Node-RED
-#    icon: mdi:sitemap
-#    url: https://disgaea.duckdns.org:1880
-#  portainer:
-#    title: Portainer
-#    icon: mdi:docker
-#    url: https://disgaea.duckdns.org:9000
-
 
 
 group: !include groups.yaml
@@ -313,19 +217,6 @@ alarm_control_panel:
     armed_home:
       pending_time: 0
       delay_time: 0
-
-
-tradfri:
-  host: 192.168.1.107
-
-#notify_hasskit: 
-#  token:
-#    - !secret notify_token
-
-#device_tracker:
-#  - platform: nmap_tracker
-#    hosts: 192.168.1.100-105
-#    home_interval: 10
 
 mobile_app:
 stream:
