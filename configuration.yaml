@@ -93,6 +93,49 @@ light:
       192.168.1.125:
         name: Kitchen strip
         mode: "rgbw"
+  - platform: group
+    name: Hallen
+    entities:
+      - light.hallen_1
+      - light.hallen_2
+      - light.hallen_3
+      - light.hallen_4
+      - light.hall_uppe_1_2
+      - light.hall_uppe_2_2
+      - light.hall_uppe_3_2
+  - platform: group
+    name: Liam
+    entities:
+      - light.liam_tak_1_2
+      - light.liam_tak_2_2
+      - light.liam_tak_3_2
+  - platform: group
+    name: Kontoret
+    entities:
+      - light.kontoret_tak_1
+      - light.kontoret_tak_2
+      - light.kontoret_tak_3
+  - platform: group
+    name: "Tv rum"
+    entities:
+      - light.tvrum_tak
+      - light.family_room_1
+      - light.family_room_2
+      - light.family_room_3
+      - light.light_strip_switch
+  - platform: group
+    name: "Köket"
+    entities:
+      - light.kok_1
+      - light.kok_2
+      - light.kok_spot_1
+      - light.kok_spot_2
+      - light.kok_spot_3
+  - platform: group
+    name: "Sovrum"
+    entities:
+      - light.sovrum_1
+      - light.sovrum_2
 
 camera:
   - platform: onvif
