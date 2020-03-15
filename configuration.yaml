@@ -73,6 +73,13 @@ map:
 
 #Enable influx DB
 influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: !secret password_small
+  max_retries: 3
+  default_measurement: state
 
 recorder:
   purge_keep_days: 7
