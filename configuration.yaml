@@ -73,7 +73,7 @@ map:
 
 #Enable influx DB
 influxdb:
-  host: a0d7b954-influxdb
+  host: localhost
   port: 8086
   database: homeassistant
   username: homeassistant
