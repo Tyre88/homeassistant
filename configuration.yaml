@@ -71,16 +71,6 @@ logbook:
 # Enables a map showing the location of tracked devices
 map:
 
-#Enable influx DB
-influxdb:
-  host: a0d7b954-influxdb
-  port: 8086
-  database: homeassistant
-  username: homeassistant
-  password: !secret password_small
-  max_retries: 3
-  default_measurement: state
-
 recorder:
   purge_keep_days: 7
   purge_interval: 1
@@ -151,6 +141,13 @@ camera:
   - platform: onvif
     name: 'Cam 1'
     host: 192.168.1.126
+    port: 8080
+    username: admin
+    password: !secret password_small
+    profile: 1
+  - platform: onvif
+    name: 'Cam 1'
+    host: 192.168.1.127
     port: 8080
     username: admin
     password: !secret password_small
@@ -262,13 +259,13 @@ alarm_control_panel:
   - platform: manual
     name: Home Alarm
     code: !secret code
-    pending_time: 25
-    delay_time: 0
+    #pending_time: 25
+    delay_time: 30
+    arming_time: 30
     trigger_time: 600
     disarmed:
       trigger_time: 0
     armed_home:
-      pending_time: 0
       delay_time: 0
 
 mobile_app:
